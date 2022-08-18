@@ -8,7 +8,7 @@
 appearance:
   theme_day: minimal
   theme_night: minimal
-  font: minimal
+  font: native
   font_size: L
 
 # SEO
@@ -18,8 +18,8 @@ marketing:
     site_type: Person
     local_business_type: ''
     org_name: ''
-    description: 'A highly-customizable Hugo academic resume theme powered by Wowchemy website builder.'
-    twitter: 'wowchemy'
+    description: 'Personal academic website of Glenn Matlin, Computer Science (Machine Learning) PhD Student at the Georgia Institute of Technology.'
+    twitter: 'glennmatlin'
   analytics:
     google_analytics: ''
     baidu_tongji: ''
@@ -43,7 +43,7 @@ header:
 
 footer:
   copyright:
-    notice: '© {year} Me. This work is licensed under {license}'
+    notice: '© {year} Glenn Matlin - Licensed under {license}'
     license:
       enable: true
       allow_derivatives: false
@@ -66,15 +66,15 @@ features:
       - r
       - latex
   math:
-    enable: false
+    enable: true
   privacy_pack:
     enable: false
   repository:
-    url: 'https://github.com/<username>/<repository>'
+    url: 'https://github.com/glennmatlin/starter-hugo-academic'
     content_dir: content
     branch: main
   avatar:
-    gravatar: false
+    gravatar: true
     shape: circle
   comment:
     provider: ''
