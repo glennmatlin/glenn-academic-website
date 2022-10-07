@@ -16,16 +16,25 @@ organizations:
 # Short bio (displayed in user profile at end of posts)
 bio: My philosophy is basically this. And this is something that I live by. And I always have. And I always will. Don't ever, for any reason, do anything to anyone, for any reason, ever, no matter what. No matter... where. Or who, or who you are with, or, or where you are going, or... or where you've been... ever. For any reason, whatsoever.
 
+# Hello, my name is Glenn Matlin. I am a graduate research assistant at the Systems for Artificial Intelligence Lab at Georgia Institute of Technology. I am a PhD candidate in Computer Science at Georgia Institute of Technology.
+# Before joining the Systems for Artificial Intelligence Lab, I spent many years  Data Science and Machine Learning working my way up from the bottom. My first industry role was as a Data Analyst at a small company working on tiny data sets. My last industry role was as a Lead Machine Learning Engineer at multi-billion dollar healthcare enterprises.
+# My current research interests are in the areas of Deep Learning, and Blockchain.
+
 # Interests to show in About widget
 interests:
-  - Systems for Artificial Intelligence
-  - Real-Time Machine Learning
-  - Quantization & Low-Precision
-  - Numerical Analysis
-  - Graph Machine Learning
-  - Deep Geometric Learning
-  - Hyperbolic Geometry
-  - Healthcare and Bioinformatics
+  - Deep Learning
+    - Graph Neural Networks with Non-Euclidean Geometry 
+    - Deep Geometric Learning (Graphs, Groups, Geodesics)
+    - High Precision Embeddings with Low Dimensionality
+  - Applications
+    - Healthcare and Bioinformatics
+    - Biomolecular Engineering
+    - Recommendation Systems
+  - Systems
+    - Real-Time Systems for Deep Geometric Learning
+    - Distributed and Parallelized Graph Processing
+    - Next-Generation Computational Arithmetic for HPC/AI
+    - Quantization and Numerical Representations for Deep Learning
 
 # Education to show in About widget
 education:
@@ -72,7 +81,7 @@ email: 'glennmatlin@gatech.edu'
 highlight_name: true
 ---
 
-Glenn Matlin is a PhD student of Computer Science (Foundations of Machine Learning) at the Georgia Institute of Technology. Glenn is advised by Dr. Alexey Tumanov and works as a Graduate Research Assistant at the Systems for Artificial Intelligence Lab.
+Glenn Matlin is a PhD student of Computer Science (Machine Learning) at the Georgia Institute of Technology. Glenn is advised by Dr. Alexey Tumanov and works as a Graduate Research Assistant at the Systems for Artificial Intelligence Lab.
 
 His research interests include Graph Machine Learning, Deep Geometric Learning, and Real-Time Machine Learning, Hyperbolic Geometry, Numerical Analysis, and Quantization for Low-Precision Computing
 
