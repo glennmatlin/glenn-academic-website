@@ -25,12 +25,11 @@ interests:
     - Graph Neural Networks 
     - Deep Geometric Learning (Non-Euclidean) 
     - Quantization and Numerical Representation
-    - High Precision Embeddings with Low Dimensionality
-    - Next-Generation Arithmetic for Deep Learning
+#    - High Precision Embeddings with Low Dimensionality
+#    - Next-Generation Arithmetic for Deep Learning
     - Real-Time Graph Machine Learning Systems
     - Distributed and Parallelized Graph Processing
-    - Healthcare Bioinformatics
-    - Computational Biochemistry
+    - Healthcare Bioinformatics and Computational Biochemistry
 
 # Education to show in About widget
 education:
@@ -66,9 +65,9 @@ social:
 # Link to a PDF of your resume/CV.
 # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.toml`,
 # and uncomment the lines below.
-# - icon: cv
-#   icon_pack: ai
-#   link: uploads/resume.pdf
+  - icon: cv
+    icon_pack: ai
+    link: uploads/resume.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: 'glennmatlin@gatech.edu'
@@ -77,10 +76,6 @@ email: 'glennmatlin@gatech.edu'
 highlight_name: true
 ---
 
-Glenn Matlin is a PhD student of Computer Science (Machine Learning) at the Georgia Institute of Technology.
+Glenn Matlin is a PhD student of Computer Science (Machine Learning) at the Georgia Institute of Technology where he is advised by Professor Alexey Tumanov.
 
-Glenn is advised by Dr. Alexey Tumanov and works as a Graduate Research Assistant at the Systems for Artificial Intelligence Lab.
-
-Glenn's research interests include Graph Machine Learning, Deep Geometric Learning, Quantization/Low-Precision Computing, and Numerical Representation for Deep Learning.
-
-As a Graduate Research Assistant at the Systems for Artificial Intelligence Lab (SAIL), Glenn conducts novel research into Machine Learning Systems for Healthcare and Bioinformatics.
+As Graduate Research Assistant at the Systems for Artificial Intelligence Lab, Glenn conducts research on Deep Geometric Learning for Healthcare and Bioinformatics.
