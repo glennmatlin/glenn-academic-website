@@ -27,7 +27,7 @@ content:
   # Contact details (edit or remove options as required)
   email: glennmatlin@gatech.edu
   address:
-    street: Klaus Advanced Computing Building
+    street: Klaus Advanced Computing Building (KACB) 3110
     city: Atlanta
     region: GA
     postcode: '30318'
@@ -37,19 +37,19 @@ content:
     latitude: '33.77703637524736'
     longitude:  '-84.39589519577751'
   directions: Elevator or stairs to the 3rd Floor of KACB
-  office_hours:
-    - 'Monday 10:00 to 13:00'
-    - 'Wednesday 09:00 to 10:00'
-  appointment_url: 'https://calendly.com'
+#  office_hours:
+#    - 'Monday 10:00 to 13:00'
+#    - 'Wednesday 09:00 to 10:00'
+#  appointment_url: 'https://calendly.com'
   contact_links:
     - icon: twitter
       icon_pack: fab
-      name: DM Me
+      name: Twitter
       link: 'https://twitter.com/glennmatlin'
-    - icon: video
-      icon_pack: fas
-      name: Zoom Me
-      link: 'https://gatech.zoom.us/my/glennmatlin'
+#    - icon: video
+#      icon_pack: fas
+#      name: Zoom Me
+#      link: 'https://gatech.zoom.us/my/glennmatlin'
 
 design:
   columns: '2'
