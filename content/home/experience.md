@@ -22,29 +22,41 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
-  - title: CEO
-    company: GenCoin
+  - title: Senior Data Scientist, Machine Learning
+    company: Komodo Health
     company_url: ''
-    company_logo: org-gc
-    location: California
-    date_start: '2021-01-01'
-    date_end: ''
-    description: |2-
-        Responsibilities include:
-        
-        * Analysing
-        * Modelling
-        * Deploying
+    company_logo: briefcase
+    location: San Francisco, California
+    date_start: '2020-09-01'
+    date_end: '2021-07-01'
+    description: Developing ML-based system leveraging clinical data to identify patients with rare undiagnosed diseases
 
-  - title: Professor of Semiconductor Physics
-    company: University X
+  - title: Senior Data Scientist, Artificial Intelligence
+    company: Change Healthcare
     company_url: ''
-    company_logo: org-x
-    location: California
-    date_start: '2016-01-01'
-    date_end: '2020-12-31'
-    description: Taught electronic engineering and researched semiconductor physics.
+    company_logo: briefcase
+    location: Berkeley, California
+    date_start: '2019-01-01'
+    date_end: '2020-05-01'
+    description: Developed Machine Learning solutions for the Artificial Intelligence Group using Deep Learning and Natural Language Processing on an unstructured medical record data set of over 100M pages
 
+  - title: Data Scientist
+    company: LendUp
+    company_url: ''
+    company_logo: briefcase
+    location: San Francisco, California
+    date_start: '2017-01-01'
+    date_end: '2018-08-01'
+    description: Led full lifecycle development of Scikit-learn and XGBoost machine learning models for credit card underwriting, responsible for ideation, testing, validation, deployment, and iterations and improvements
+
+  - title: Senior Data Analyst
+    company: RichRelevance
+    company_url: ''
+    company_logo: briefcase
+    location: San Francisco, California
+    date_start: '2015-05-01'
+    date_end: '2016-12-01'
+    description: Led data analysis and custom performance reporting for a variety of key eCommerce clients, including Costco, Patagonia, UnderArmor driving new revenue by deploying ML recommendation systems for clients
 design:
   columns: '2'
 ---
