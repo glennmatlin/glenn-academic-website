@@ -6,14 +6,10 @@ title: Glenn Matlin
 superuser: true
 
 # Role/position/tagline
-role: Graduate Research Assistant @ Systems for Artificial Intelligence Lab & PhD Computer Science (2026)
+role: PhD Computer Science
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: Professor Alexey Tumanov (Advisor)
-    url: https://faculty.cc.gatech.edu/~atumanov/
-  - name: Systems for Artificial Intelligence Lab
-    url: https://faculty.cc.gatech.edu/~atumanov/
   - name: Georgia Institute of Technology, School of Computer Science
     url: https://www.scs.gatech.edu/
 
@@ -22,21 +18,21 @@ bio: "My philosophy is basically this. And this is something that I live by. And
 
 # Interests to show in About widget
 interests:
-    - Graph Neural Networks 
+<!--     - Graph Neural Networks 
     - Deep Geometric Learning (Non-Euclidean) 
     - Quantization and Numerical Representation
 #    - High Precision Embeddings with Low Dimensionality
 #    - Next-Generation Arithmetic for Deep Learning
     - Real-Time Graph Machine Learning Systems
     - Distributed and Parallelized Graph Processing
-    - Healthcare Bioinformatics and Computational Biochemistry
+    - Healthcare Bioinformatics and Computational Biochemistry -->
 
 # Education to show in About widget
 education:
   courses:
-    - course: PhD in Artificial Intelligence
+    - course: PhD in Computer Science
       institution: Georgia Institute of Technology
-      year: 2026
+      year: TBD
     - course: BS in Economics
       institution: University of Central Florida
       year: 2010
@@ -76,6 +72,4 @@ email: 'glennmatlin@gatech.edu'
 highlight_name: true
 ---
 
-Glenn Matlin is a PhD student of Computer Science (Machine Learning) at the Georgia Institute of Technology where he is advised by Professor Alexey Tumanov.
-
-As Graduate Research Assistant at the Systems for Artificial Intelligence Lab, Glenn conducts research on Deep Geometric Learning for Healthcare and Bioinformatics.
+Glenn Matlin is a PhD student of Computer Science at the Georgia Institute of Technology
