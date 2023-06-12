@@ -16,17 +16,6 @@ organizations:
 # Short bio (displayed in user profile at end of posts)
 bio: "My philosophy is basically this. And this is something that I live by. And I always have. And I always will. Don't ever, for any reason, do anything to anyone, for any reason, ever, no matter what. No matter... where. Or who, or who you are with, or, or where you are going, or... or where you've been... ever. For any reason, whatsoever."
 
-# Interests to show in About widget
-interests:
-<!--     - Graph Neural Networks 
-    - Deep Geometric Learning (Non-Euclidean) 
-    - Quantization and Numerical Representation
-#    - High Precision Embeddings with Low Dimensionality
-#    - Next-Generation Arithmetic for Deep Learning
-    - Real-Time Graph Machine Learning Systems
-    - Distributed and Parallelized Graph Processing
-    - Healthcare Bioinformatics and Computational Biochemistry -->
-
 # Education to show in About widget
 education:
   courses:
