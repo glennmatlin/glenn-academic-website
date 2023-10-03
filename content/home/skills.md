@@ -25,17 +25,21 @@ feature:
     icon_pack: fas
     name: C, C++
   - description:
-    icon: 'ai-chip'
-    icon_pack: "custom"
-    name: Systems
-  - description:
     icon: calculator
     icon_pack: fas
     name: Statistics & Probability
   - description:
-    icon: 'diagram'
+    icon: language
+    icon_pack: fas
+    name: Natural Language Processing
+  - description:
+    icon: pen-to-square
+    icon_pack: fas
+    name: Large Language Models
+  - description:
+    icon: 'ai-chip'
     icon_pack: "custom"
-    name: Graphs & Geometry
+    name: Systems
 #  - icon: ":smile:"
 #    icon_pack: "emoji"
 #    name: "Emojiness"
