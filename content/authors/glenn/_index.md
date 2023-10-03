@@ -6,7 +6,7 @@ title: Glenn Matlin
 superuser: true
 
 # Role/position/tagline
-role: PhD Computer Science
+role: PhD, Machine Learning
 
 # Organizations/Affiliations to show in About widget
 organizations:
