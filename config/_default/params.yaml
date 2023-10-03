@@ -17,25 +17,25 @@ marketing:
   seo:
     site_type: Person
     local_business_type: ''
-    org_name: ''
-    description: 'Personal academic website of Glenn Matlin, Computer Science (Machine Learning) PhD Student at the Georgia Institute of Technology.'
+    org_name: 'Georgia Tech'
+    description: 'Personal academic website of Glenn Matlin PhD Student (Machine Learning) at the Georgia Institute of Technology.'
     twitter: 'glennmatlin'
   analytics:
     google_analytics: ''
-    baidu_tongji: ''
+#    baidu_tongji: ''
   verification:
     google: ''
-    baidu: ''
+#    baidu: ''
 
 # Site header
 
 header:
   navbar:
     enable: true
-    align: l
+    align: r
     show_logo: true
     show_language: false
-    show_day_night: true
+    show_day_night: false
     show_search: true
     highlight_active_link: true
 
@@ -43,7 +43,7 @@ header:
 
 footer:
   copyright:
-    notice: '© {year} Glenn Matlin - Licensed under {license}'
+    notice: '© {year} Glenn Matlin - Work and website licensed under {license}'
     license:
       enable: true
       allow_derivatives: false
@@ -61,10 +61,12 @@ locale:
 
 features:
   syntax_highlighter:
-    enable: true
-    extra_languages:
-      - r
-      - latex
+    theme_light: github-light
+    theme_dark: dracula
+#    enable: true
+#    extra_languages:
+#      - r
+#      - latex
   math:
     enable: true
   privacy_pack:

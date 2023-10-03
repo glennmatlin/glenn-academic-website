@@ -27,16 +27,16 @@ content:
   # Contact details (edit or remove options as required)
   email: glennmatlin@gatech.edu
   address:
-    street: Klaus Advanced Computing Building (KACB) 3110
+    street: CODA at Tech Square, 756 W Peachtree St
     city: Atlanta
     region: GA
-    postcode: '30318'
+    postcode: '30308'
     country: United States
     country_code: US
   coordinates:
-    latitude: '33.77703637524736'
-    longitude:  '-84.39589519577751'
-  directions: Elevator or stairs to the 3rd Floor of KACB
+    latitude: '33.7752651'
+    longitude:  '-84.3876426'
+#  directions: 
 #  office_hours:
 #    - 'Monday 10:00 to 13:00'
 #    - 'Wednesday 09:00 to 10:00'

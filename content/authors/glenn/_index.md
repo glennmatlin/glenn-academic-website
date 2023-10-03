@@ -19,9 +19,9 @@ bio: "My philosophy is basically this. And this is something that I live by. And
 # Education to show in About widget
 education:
   courses:
-    - course: PhD in Computer Science
+    - course: PhD in Machine Learning
       institution: Georgia Institute of Technology
-      year: TBD
+      year: 2027 (Expected)
     - course: BS in Economics
       institution: University of Central Florida
       year: 2010
@@ -61,4 +61,4 @@ email: 'glennmatlin@gatech.edu'
 highlight_name: true
 ---
 
-Glenn Matlin is a PhD student of Computer Science at the Georgia Institute of Technology
+Glenn Matlin is a PhD student of Machine Learning at the Georgia Institute of Technology advised by Professor Sudheer Chava
