@@ -72,7 +72,7 @@ features:
   privacy_pack:
     enable: false
   repository:
-    url: 'https://github.com/glennmatlin/starter-hugo-academic'
+    url: 'https://github.com/glennmatlin/glenn-academic-website'
     content_dir: content
     branch: main
   avatar:
