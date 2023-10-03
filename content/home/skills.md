@@ -33,12 +33,12 @@ feature:
     icon_pack: fas
     name: Natural Language Processing
   - description:
-    icon: pen-to-square
+    icon: robot
     icon_pack: fas
     name: Large Language Models
   - description:
-    icon: 'ai-chip'
-    icon_pack: "custom"
+    icon: microchip
+    icon_pack: fas
     name: Systems
 #  - icon: ":smile:"
 #    icon_pack: "emoji"
