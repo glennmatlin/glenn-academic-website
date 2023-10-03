@@ -1,9 +1,9 @@
 ---
 title: SumGNN
-subtitle: CS7001 Mini-Project #1
+subtitle:
 
 # Summary for listings and search engines
-summary: CS7001 Mini-Project #1
+summary: SumGNN
 
 # Link this post with a project
 projects: []

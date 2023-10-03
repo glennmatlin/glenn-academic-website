@@ -17,7 +17,12 @@ content:
   filters:
     folders:
       - post
-    tag: ''
+    tag:      
+    - Systems for Machine Learning
+    - Efficient Machine Learning
+    - Knowledge Gating
+    - Bioinformatics
+    - NeurIPS
     category: ''
     publication_type: ''
     author: ''
