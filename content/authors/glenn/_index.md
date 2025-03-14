@@ -14,7 +14,7 @@ organizations:
     url: https://www.scs.gatech.edu/
 
 # Short bio (displayed in user profile at end of posts)
-bio: "My philosophy is basically this. And this is something that I live by. And I always have. And I always will. Don't ever, for any reason, do anything to anyone, for any reason, ever, no matter what. No matter... where. Or who, or who you are with, or, or where you are going, or... or where you've been... ever. For any reason, whatsoever."
+bio: "PhD researcher in Machine Learning with focus on NLP, large language models, and financial applications. Experienced data scientist with industry background in healthcare, fintech, and e-commerce. Research interests include financial language models, explainable AI, and domain-specific model evaluation."
 
 # Education to show in About widget
 education:
@@ -61,4 +61,8 @@ email: 'glennmatlin@gatech.edu'
 highlight_name: true
 ---
 
-Glenn Matlin is a PhD student of Machine Learning at the Georgia Institute of Technology advised by Professor Sudheer Chava
+Glenn Matlin is a PhD student in Machine Learning at the Georgia Institute of Technology advised by Professor Sudheer Chava. His research focuses on developing innovative machine learning approaches for financial applications, with particular emphasis on large language models and their evaluation in domain-specific contexts.
+
+His current work includes the FLAME framework for evaluating LLMs in financial contexts and exploring methods for making deep learning models more explainable and trustworthy for high-stakes financial decisions. Before joining Georgia Tech, Glenn spent several years as a data scientist applying machine learning solutions in healthcare, financial technology, and e-commerce.
+
+Glenn combines strong technical skills in Python, statistics, and deep learning with domain expertise in finance and healthcare. He is passionate about bridging the gap between academic research and practical industry applications of AI.

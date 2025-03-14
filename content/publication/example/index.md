@@ -78,12 +78,14 @@ projects: []
 slides: example
 ---
 
-{{% callout note %}}
-Click the _Cite_ button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-{{% /callout %}}
+## Abstract
 
-{{% callout note %}}
-Create your slides in Markdown - click the _Slides_ button to check out the example.
-{{% /callout %}}
+Machine Learning (ML) research has focused on maximizing the accuracy of predictive tasks. ML models, however, are increasingly more complex, resource intensive, and costlier to deploy in resource-constrained environments. These issues are exacerbated for prediction tasks with sequential classification on progressively transitioned stages with "happens-before" relation between them.
 
-Supplementary notes can be added here, including [code, math, and images](https://wowchemy.com/docs/writing-markdown-latex/).
+We propose UnfoldML, a cost-aware and uncertainty-based dynamic 2D prediction pipeline for multi-stage classification that:
+
+1. Navigates the accuracy/cost tradeoff space
+2. Reduces the spatio-temporal cost of inference by orders of magnitude
+3. Enables early prediction on proceeding stages
+
+In clinical settings, UnfoldML achieves within 0.1% accuracy of high-performing multi-class baselines while saving close to 20X on inference costs and enabling earlier (3.5hrs) disease onset prediction. We demonstrate that UnfoldML also generalizes to image classification tasks.
