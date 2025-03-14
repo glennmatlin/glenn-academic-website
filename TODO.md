@@ -19,17 +19,17 @@
 - [ ] **Projects Section**: Add 1-2 more research or development projects
 - [ ] **Publications**: Add additional publications if available
 - [x] **Blog Posts**: Remove the "getting-started" default post
-- [ ] **Blog Content**: Add 1-2 more blog posts about research or technical topics
+- [x] **Blog Content**: Add 1-2 more blog posts about research or technical topics
 
 ### Site Enhancements
-- [ ] **Contact Section**: Add office hours and/or appointment URL (Calendly)
+- [x] **Contact Section**: Add office hours and/or appointment URL (Calendly)
 - [ ] **Skills Section**: Review and possibly expand skills with more detailed descriptions
-- [ ] **Social Links**: Consider adding ORCID, ResearchGate, or other academic profiles
+- [x] **Social Links**: Consider adding ORCID, ResearchGate, or other academic profiles
 
 ## Low Priority
 
 ### Technical Optimizations
-- [ ] **Syntax Highlighting**: Enable for Python, R, and LaTeX in params.yaml
+- [x] **Syntax Highlighting**: Enable for Python, R, and LaTeX in params.yaml
 - [ ] **Search Functionality**: Consider configuring Algolia for better search capabilities
 - [ ] **Analytics**: Set up Google Analytics to track website traffic
 - [ ] **Site Performance**: Optimize image sizes and check page load performance
@@ -53,6 +53,10 @@
 - [x] Remove SumGNN content (not an actual project)
 - [x] Remove default getting-started blog post
 - [x] Consolidate LLM evaluation content into FLAME project
+- [x] Add office hours and Calendly to contact section
+- [x] Add ORCID to social links
+- [x] Enable syntax highlighting for Python, R, and LaTeX
+- [x] Create detailed blog post about LLM evaluation challenges
 
 ## Notes
 - For featured images, create or find appropriate images of 1200×800 pixels

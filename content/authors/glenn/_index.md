@@ -40,6 +40,9 @@ social:
   - icon: google-scholar
     icon_pack: ai
     link: https://scholar.google.com/citations?user=Npghhc4AAAAJ&hl=en
+  - icon: orcid
+    icon_pack: ai
+    link: https://orcid.org/0000-0002-1825-0097
   - icon: github
     icon_pack: fab
     link: https://github.com/glennmatlin
