@@ -5,7 +5,7 @@
 ### Content Improvements
 - [x] **Bio Section**: Replace placeholder text in `content/authors/glenn/_index.md` with professional academic bio
 - [x] **FLAME Project Image**: Create proper featured image for FLAME project to replace text placeholder
-- [x] **New Project**: Create a new authentic project to replace the removed example project
+- [x] **FLAME Project**: Enhance FLAME project page with comprehensive content
 - [x] **Publications**: Remove demo callouts from example publication
 - [x] **Remove SumGNN**: Purge all SumGNN content as it was not an actual project
 
@@ -43,7 +43,7 @@
 - [x] Create CLAUDE.md with website guidelines
 - [x] Update experience section with company logos
 - [x] Enable projects section in menus.yaml
-- [x] Create FLAME project page
+- [x] Create and enhance FLAME project page
 - [x] Add detailed skill descriptions
 - [x] Create projects.md for homepage
 - [x] Enable Git information in config
@@ -51,8 +51,8 @@
 - [x] Create branch for changes
 - [x] Create TODO.md
 - [x] Remove SumGNN content (not an actual project)
-- [x] Create LLM Evaluation Framework project
 - [x] Remove default getting-started blog post
+- [x] Consolidate LLM evaluation content into FLAME project
 
 ## Notes
 - For featured images, create or find appropriate images of 1200×800 pixels
