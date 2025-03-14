@@ -5,8 +5,9 @@
 ### Content Improvements
 - [x] **Bio Section**: Replace placeholder text in `content/authors/glenn/_index.md` with professional academic bio
 - [x] **FLAME Project Image**: Create proper featured image for FLAME project to replace text placeholder
-- [x] **Example Project**: Remove or replace generic example project with a real project
+- [x] **New Project**: Create a new authentic project to replace the removed example project
 - [x] **Publications**: Remove demo callouts from example publication
+- [x] **Remove SumGNN**: Purge all SumGNN content as it was not an actual project
 
 ### Technical Fixes
 - [ ] **Git Workflow**: Merge 'website-improvements' branch into main after completing current tasks
@@ -15,9 +16,9 @@
 ## Medium Priority
 
 ### Content Expansion
-- [ ] **Projects Section**: Add 2-3 more research or development projects
+- [ ] **Projects Section**: Add 1-2 more research or development projects
 - [ ] **Publications**: Add additional publications if available
-- [ ] **Blog Posts**: Remove or update the "getting-started" default post
+- [x] **Blog Posts**: Remove the "getting-started" default post
 - [ ] **Blog Content**: Add 1-2 more blog posts about research or technical topics
 
 ### Site Enhancements
@@ -49,6 +50,9 @@
 - [x] Update publication PDF link
 - [x] Create branch for changes
 - [x] Create TODO.md
+- [x] Remove SumGNN content (not an actual project)
+- [x] Create LLM Evaluation Framework project
+- [x] Remove default getting-started blog post
 
 ## Notes
 - For featured images, create or find appropriate images of 1200×800 pixels
