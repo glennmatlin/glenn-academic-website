@@ -16,27 +16,27 @@ subtitle:
 # - Add/remove as many `feature` blocks below as you like.
 # - For available icons, see: https://wowchemy.com/docs/page-builder/#icons
 feature:
-  - description:
+  - description: 10+ years experience with Python for ML, data science and backend development
     icon: python
     icon_pack: fab
     name: Python
-  - description:
+  - description: System-level programming and high-performance computing
     icon: c
     icon_pack: fas
     name: C, C++
-  - description:
+  - description: Statistical modeling, Bayesian inference, and probabilistic methods
     icon: calculator
     icon_pack: fas
     name: Statistics & Probability
-  - description:
+  - description: Text processing, semantic analysis, sentiment analysis, and information extraction
     icon: language
     icon_pack: fas
     name: Natural Language Processing
-  - description:
+  - description: Fine-tuning, prompt engineering, and evaluation of foundation models
     icon: robot
     icon_pack: fas
     name: Large Language Models
-  - description:
+  - description: Distributed systems, cloud architecture, and ML infrastructure
     icon: microchip
     icon_pack: fas
     name: Systems

@@ -36,20 +36,20 @@ content:
   coordinates:
     latitude: '33.7752651'
     longitude:  '-84.3876426'
-#  directions: 
-#  office_hours:
-#    - 'Monday 10:00 to 13:00'
-#    - 'Wednesday 09:00 to 10:00'
-#  appointment_url: 'https://calendly.com'
+  directions: 'CODA Building, 7th Floor, Office 7225'
+  office_hours:
+    - 'Tuesday 13:00 to 15:00'
+    - 'Thursday 10:00 to 12:00'
+  appointment_url: 'https://calendly.com/glennmatlin/30min'
   contact_links:
     - icon: twitter
       icon_pack: fab
       name: Twitter
       link: 'https://twitter.com/glennmatlin'
-#    - icon: video
-#      icon_pack: fas
-#      name: Zoom Me
-#      link: 'https://gatech.zoom.us/my/glennmatlin'
+    - icon: video
+      icon_pack: fas
+      name: Virtual Meeting
+      link: 'https://gatech.zoom.us/my/glennmatlin'
 
 design:
   columns: '2'

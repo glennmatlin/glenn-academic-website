@@ -63,10 +63,11 @@ features:
   syntax_highlighter:
     theme_light: github-light
     theme_dark: dracula
-#    enable: true
-#    extra_languages:
-#      - r
-#      - latex
+    enable: true
+    extra_languages:
+      - python
+      - r
+      - latex
   math:
     enable: true
   privacy_pack:

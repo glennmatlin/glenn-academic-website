@@ -24,8 +24,8 @@ date_format: Jan 2006
 experience:
   - title: Senior Data Scientist, Machine Learning
     company: Komodo Health
-    company_url: ''
-    company_logo: briefcase
+    company_url: 'https://www.komodohealth.com/'
+    company_logo: komodo
     location: San Francisco, California
     date_start: '2020-09-01'
     date_end: '2021-07-01'
@@ -33,8 +33,8 @@ experience:
 
   - title: Senior Data Scientist, Artificial Intelligence
     company: Change Healthcare
-    company_url: ''
-    company_logo: briefcase
+    company_url: 'https://www.changehealthcare.com/'
+    company_logo: changehealth
     location: Berkeley, California
     date_start: '2019-01-01'
     date_end: '2020-05-01'
@@ -42,8 +42,8 @@ experience:
 
   - title: Data Scientist
     company: LendUp
-    company_url: ''
-    company_logo: briefcase
+    company_url: 'https://www.lendup.com/'
+    company_logo: lendup
     location: San Francisco, California
     date_start: '2017-01-01'
     date_end: '2018-08-01'
@@ -51,8 +51,8 @@ experience:
 
   - title: Senior Data Analyst
     company: RichRelevance
-    company_url: ''
-    company_logo: briefcase
+    company_url: 'https://www.richrelevance.com/'
+    company_logo: richrelevance
     location: San Francisco, California
     date_start: '2015-05-01'
     date_end: '2016-12-01'
