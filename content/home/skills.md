@@ -10,11 +10,7 @@ headless: true
 weight: 60
 
 title: Skills
-subtitle:
-
-# Showcase personal skills or business features.
-# - Add/remove as many `feature` blocks below as you like.
-# - For available icons, see: https://wowchemy.com/docs/page-builder/#icons
+subtitle: "Showcase of technical and research expertise"
 feature:
   - description: 10+ years experience with Python for ML, data science and backend development
     icon: python
