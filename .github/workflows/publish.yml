@@ -17,8 +17,8 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: List files in the repository
-        run: ls -R
+      - name: Debug: Print _quarto.yml content
+        run: cat _quarto.yml
 
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
