@@ -10,7 +10,7 @@ headless: true
 weight: 180
 
 title: Recent Posts
-subtitle:
+subtitle: "Latest updates"
 
 content:
   # Filter on criteria
