@@ -1,0 +1,20 @@
+[
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/project/flame/index.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/post/llm-evaluation-challenges/index.html"
+    ]
+  },
+  {
+    "listing": "/publications.html",
+    "items": [
+      "/publication/example/index.html"
+    ]
+  }
+]

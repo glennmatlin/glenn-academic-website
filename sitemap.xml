@@ -1,107 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://glennmatlin.doctor/docs/GLENN.html</loc>
+    <loc>https://glennmatlin.com/about.html</loc>
+    <lastmod>2025-07-20T21:03:04.257Z</lastmod>
+  </url>
+  <url>
+    <loc>https://glennmatlin.com/docs/IMPROVEMENT_PLAN.html</loc>
     <lastmod>2025-07-20T20:35:03.729Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/LICENSE.html</loc>
+    <loc>https://glennmatlin.com/LICENSE.html</loc>
     <lastmod>2025-07-20T20:35:03.601Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/publication/example/index.html</loc>
-    <lastmod>2025-07-20T20:35:03.721Z</lastmod>
+    <loc>https://glennmatlin.com/projects.html</loc>
+    <lastmod>2025-07-20T21:03:19.941Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/home/skills.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/blog.html</loc>
+    <lastmod>2025-07-20T21:03:12.449Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/home/experience.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/knowledgebase/python/python3_logging_howto.html</loc>
+    <lastmod>2025-07-20T20:56:03.409Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/home/projects.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/knowledgebase/python/python3_logging_cookbook.html</loc>
+    <lastmod>2025-07-20T20:56:03.409Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/home/index.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/knowledgebase/cheatsheets/tmux.html</loc>
+    <lastmod>2025-07-20T20:56:03.409Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/home/tags.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/index.html</loc>
+    <lastmod>2025-07-20T20:56:22.029Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/admin/index.html</loc>
-    <lastmod>2025-07-20T20:35:03.709Z</lastmod>
+    <loc>https://glennmatlin.com/project/flame/index.html</loc>
+    <lastmod>2025-07-20T21:05:05.225Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/knowledgebase/python/python3_logging_howto.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/knowledgebase/cheatsheets/marp.html</loc>
+    <lastmod>2025-07-20T21:04:28.313Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/knowledgebase/python/python3_logging_cookbook.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/knowledgebase/python/python3_logging_api.html</loc>
+    <lastmod>2025-07-20T20:56:03.409Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/knowledgebase/cheatsheets/tmux.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/content/projects.html</loc>
-    <lastmod>2025-07-20T20:35:03.717Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/index.html</loc>
+    <loc>https://glennmatlin.com/kb/llm/llms.html</loc>
     <lastmod>2025-07-20T20:35:03.737Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/kb/llm/llms.html</loc>
-    <lastmod>2025-07-20T20:35:03.737Z</lastmod>
+    <loc>https://glennmatlin.com/post/llm-evaluation-challenges/index.html</loc>
+    <lastmod>2025-07-20T21:04:50.369Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/project/flame/index.html</loc>
-    <lastmod>2025-07-20T20:35:03.717Z</lastmod>
+    <loc>https://glennmatlin.com/publications.html</loc>
+    <lastmod>2025-07-20T21:03:27.849Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/knowledgebase/cheatsheets/marp.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/authors/glenn/index.html</loc>
+    <lastmod>2025-07-20T20:56:08.753Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/knowledgebase/python/python3_logging_api.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
+    <loc>https://glennmatlin.com/publication/example/index.html</loc>
+    <lastmod>2025-07-20T21:07:08.773Z</lastmod>
   </url>
   <url>
-    <loc>https://glennmatlin.doctor/content/post/llm-evaluation-challenges/index.html</loc>
-    <lastmod>2025-07-20T20:35:03.717Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/content/accomplishments.html</loc>
-    <lastmod>2025-07-20T20:35:03.709Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/content/home/posts.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/content/home/contact.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/content/home/about.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/content/home/publications.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/content/home/featured.html</loc>
-    <lastmod>2025-07-20T20:35:03.713Z</lastmod>
-  </url>
-  <url>
-    <loc>https://glennmatlin.doctor/docs/IMPROVEMENT_PLAN.html</loc>
+    <loc>https://glennmatlin.com/docs/GLENN.html</loc>
     <lastmod>2025-07-20T20:35:03.729Z</lastmod>
   </url>
 </urlset>
