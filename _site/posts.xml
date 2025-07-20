@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Glenn Matlin</title>
+<link>https://glennmatlin.doctor/posts.html</link>
+<atom:link href="https://glennmatlin.doctor/posts.xml" rel="self" type="application/rss+xml"/>
+<description>Glenn Matlin&#39;s blog on machine learning, AI, and financial technology</description>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Sun, 01 Dec 2024 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>The Challenges of Evaluating Large Language Models</title>
+  <dc:creator>Glenn Matlin</dc:creator>
+  <link>https://glennmatlin.doctor/posts/2024-12-llm-evaluation/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>As Large Language Models (LLMs) continue to evolve and find applications across diverse domains, the challenge of evaluating their capabilities becomes increasingly complex. Traditional benchmarks often fall short when assessing domain-specific performance, particularly in specialized fields like finance, healthcare, or law.</p>
+</section>
+<section id="the-problem-with-generic-benchmarks" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-with-generic-benchmarks">The Problem with Generic Benchmarks</h2>
+<p>Most existing LLM benchmarks focus on general knowledge and reasoning tasks:</p>
+<ul>
+<li><strong>MMLU</strong>: Tests general knowledge across multiple subjects</li>
+<li><strong>HumanEval</strong>: Evaluates code generation capabilities</li>
+<li><strong>GSM8K</strong>: Assesses mathematical reasoning</li>
+</ul>
+<p>While these benchmarks provide valuable insights, they don’t capture the nuanced requirements of domain-specific applications.</p>
+</section>
+<section id="domain-specific-evaluation-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="domain-specific-evaluation-challenges">Domain-Specific Evaluation Challenges</h2>
+<section id="specialized-knowledge-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="specialized-knowledge-requirements">1. Specialized Knowledge Requirements</h3>
+<p>Domain experts often use terminology and concepts that require deep contextual understanding. For example, in finance:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Example: Financial concept that requires domain knowledge</span></span>
+<span id="cb1-2">query <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"What is the impact of duration risk on a bond portfolio during yield curve inversion?"</span></span></code></pre></div>
+</section>
+<section id="regulatory-and-compliance-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="regulatory-and-compliance-considerations">2. Regulatory and Compliance Considerations</h3>
+<p>Many domains have strict regulatory requirements that generic benchmarks don’t address:</p>
+<ul>
+<li>Financial advice must comply with SEC regulations</li>
+<li>Medical recommendations need FDA approval considerations</li>
+<li>Legal opinions must align with jurisdictional requirements</li>
+</ul>
+</section>
+<section id="real-world-task-complexity" class="level3">
+<h3 class="anchored" data-anchor-id="real-world-task-complexity">3. Real-World Task Complexity</h3>
+<p>Practical applications often involve multi-step reasoning and integration of various information sources:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> evaluate_financial_analysis(model, financial_data):</span>
+<span id="cb2-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb2-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Evaluate model's ability to:</span></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    1. Parse financial statements</span></span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    2. Calculate key ratios</span></span>
+<span id="cb2-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    3. Provide investment recommendations</span></span>
+<span id="cb2-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    4. Consider market conditions</span></span>
+<span id="cb2-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    """</span></span>
+<span id="cb2-9">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Complex evaluation logic here</span></span>
+<span id="cb2-10">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">pass</span></span></code></pre></div>
+</section>
+</section>
+<section id="introducing-flame-a-financial-language-model-benchmark" class="level2">
+<h2 class="anchored" data-anchor-id="introducing-flame-a-financial-language-model-benchmark">Introducing FLAME: A Financial Language Model Benchmark</h2>
+<p>To address these challenges in the financial domain, we developed FLAME (Financial Language Model Evaluation), which includes:</p>
+<ol type="1">
+<li><strong>Diverse Task Categories</strong>: From basic financial literacy to complex derivatives pricing</li>
+<li><strong>Real-World Scenarios</strong>: Based on actual financial analyst workflows</li>
+<li><strong>Regulatory Compliance Checks</strong>: Ensuring outputs meet industry standards</li>
+<li><strong>Multi-Modal Evaluation</strong>: Incorporating tables, charts, and textual analysis</li>
+</ol>
+</section>
+<section id="best-practices-for-domain-specific-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices-for-domain-specific-evaluation">Best Practices for Domain-Specific Evaluation</h2>
+<section id="collaborate-with-domain-experts" class="level3">
+<h3 class="anchored" data-anchor-id="collaborate-with-domain-experts">1. Collaborate with Domain Experts</h3>
+<p>Involve professionals who understand the nuances and edge cases in your target domain.</p>
+</section>
+<section id="use-representative-data" class="level3">
+<h3 class="anchored" data-anchor-id="use-representative-data">2. Use Representative Data</h3>
+<p>Ensure your evaluation dataset reflects real-world distributions and challenges.</p>
+</section>
+<section id="consider-multiple-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="consider-multiple-metrics">3. Consider Multiple Metrics</h3>
+<p>Don’t rely on a single accuracy score. Consider: - Factual correctness - Reasoning quality - Safety and compliance - Practical utility</p>
+</section>
+<section id="continuous-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-evaluation">4. Continuous Evaluation</h3>
+<p>As models and domains evolve, regularly update your benchmarks to remain relevant.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Evaluating LLMs for domain-specific applications requires thoughtful design and deep domain understanding. Generic benchmarks, while useful, cannot capture the full complexity of specialized fields. By developing targeted evaluation frameworks like FLAME, we can better assess and improve LLM performance where it matters most.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ol type="1">
+<li>Matlin, G., Okamoto, M., Pardawala, H., Yang, Y., &amp; Chava, S. (2024). Financial Language Model Evaluation (FLaME). <em>Working Paper</em>.</li>
+<li>Hendrycks, D., et al.&nbsp;(2021). Measuring Massive Multitask Language Understanding. <em>ICLR 2021</em>.</li>
+<li>Chen, M., et al.&nbsp;(2021). Evaluating Large Language Models Trained on Code. <em>arXiv preprint</em>.</li>
+</ol>
+<hr>
+<p><em>Have thoughts on LLM evaluation? Feel free to <a href="../../about.html#contact">reach out</a> or discuss on <a href="https://twitter.com/glennmatlin">Twitter</a>.</em></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>LLMs</category>
+  <category>Research</category>
+  <category>Evaluation</category>
+  <guid>https://glennmatlin.doctor/posts/2024-12-llm-evaluation/</guid>
+  <pubDate>Sun, 01 Dec 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://glennmatlin.doctor/posts/2024-12-llm-evaluation/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>

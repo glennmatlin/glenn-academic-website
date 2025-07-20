@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Glenn Matlin</title>
+<link>https://glennmatlin.doctor/news.html</link>
+<atom:link href="https://glennmatlin.doctor/news.xml" rel="self" type="application/rss+xml"/>
+<description>PhD Student in Machine Learning | Georgia Institute of Technology</description>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Wed, 20 Nov 2024 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Received Outstanding TA Award</title>
+  <link>https://glennmatlin.doctor/news/2024-11-teaching-award/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’m honored to receive the <strong>Outstanding Teaching Assistant Award</strong> from Georgia Tech’s Computer Science Department for my work in CS 7643: Deep Learning (Fall 2024).</p>
+<section id="teaching-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="teaching-highlights">Teaching Highlights</h2>
+<p>This semester has been incredibly rewarding:</p>
+<ul>
+<li>Taught <strong>150+ graduate students</strong> fundamental and advanced deep learning concepts</li>
+<li>Developed new materials on <strong>transformer architectures</strong> and <strong>large language models</strong></li>
+<li>Created hands-on assignments integrating <strong>financial AI applications</strong></li>
+<li>Mentored 12 final projects, 3 of which are being extended for publication</li>
+</ul>
+</section>
+<section id="student-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="student-feedback">Student Feedback</h2>
+<blockquote class="blockquote">
+<p>“Glenn’s office hours were invaluable. He has a gift for explaining complex concepts in accessible ways and always connected theory to real-world applications.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“The supplementary materials on LLMs and prompt engineering were game-changers for my research project.”</p>
+</blockquote>
+<p>I’m grateful to Prof.&nbsp;[Instructor Name] for the opportunity to contribute to this course and to all the students who made this semester so engaging. Looking forward to continuing to support student learning and research!</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Teaching</category>
+  <category>Award</category>
+  <guid>https://glennmatlin.doctor/news/2024-11-teaching-award/</guid>
+  <pubDate>Wed, 20 Nov 2024 05:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>FLaME Benchmark Released to Research Community</title>
+  <link>https://glennmatlin.doctor/news/2024-10-flame-release/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>We’re excited to announce the public release of <strong>FLaME (Financial Language Model Evaluation)</strong>, now available to the research community!</p>
+<section id="whats-included" class="level2">
+<h2 class="anchored" data-anchor-id="whats-included">What’s Included</h2>
+<section id="comprehensive-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="comprehensive-dataset">📊 Comprehensive Dataset</h3>
+<ul>
+<li>10,000+ carefully curated financial questions</li>
+<li>Covers 8 major categories: markets, accounting, risk, regulation, quantitative analysis, and more</li>
+<li>Multiple difficulty levels from basic literacy to expert-level reasoning</li>
+</ul>
+</section>
+<section id="evaluation-framework" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-framework">🛠️ Evaluation Framework</h3>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> flame <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> FLAMEEvaluator</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">evaluator <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> FLAMEEvaluator()</span>
+<span id="cb1-4">results <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> evaluator.evaluate(</span>
+<span id="cb1-5">    model<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gpt-4"</span>,</span>
+<span id="cb1-6">    tasks<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"risk_assessment"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"market_analysis"</span>]</span>
+<span id="cb1-7">)</span></code></pre></div>
+</section>
+<section id="public-leaderboard" class="level3">
+<h3 class="anchored" data-anchor-id="public-leaderboard">🏆 Public Leaderboard</h3>
+<p>Track model performance and submit your results at <a href="https://flame-benchmark.org">flame-benchmark.org</a></p>
+</section>
+</section>
+<section id="early-adoption" class="level2">
+<h2 class="anchored" data-anchor-id="early-adoption">Early Adoption</h2>
+<p>We’re thrilled to see early adoption from: - <strong>Industry</strong>: Major financial institutions evaluating their internal models - <strong>Academia</strong>: 5+ universities using FLaME in their research - <strong>Open Source</strong>: Community contributions improving coverage</p>
+</section>
+<section id="get-involved" class="level2">
+<h2 class="anchored" data-anchor-id="get-involved">Get Involved</h2>
+<ul>
+<li>⭐ <a href="https://github.com/glennmatlin/flame">Star on GitHub</a></li>
+<li>🤝 <a href="https://github.com/glennmatlin/flame/contribute">Contribute test cases</a></li>
+<li>📧 <a href="mailto:flame-benchmark@googlegroups.com">Join our mailing list</a></li>
+</ul>
+<p>Special thanks to our collaborators and the DARPA ARC program for supporting this work!</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Research</category>
+  <category>Open Source</category>
+  <guid>https://glennmatlin.doctor/news/2024-10-flame-release/</guid>
+  <pubDate>Wed, 30 Oct 2024 04:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

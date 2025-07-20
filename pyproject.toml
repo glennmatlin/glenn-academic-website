@@ -1,0 +1,9 @@
+[project]
+name = "glenn-academic-website"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "quarto>=0.1.0",
+]
