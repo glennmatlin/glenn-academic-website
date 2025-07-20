@@ -1,15 +1,18 @@
 ---
-title: "Glenn Matlin"
-page-layout: custom
+page-layout: full
 toc: false
+format:
+  html:
+    title-block-banner: false
+    title-block-style: none
 ---
 
 ::: {.hero-banner}
 ::: {.content-block}
 ::: {.hero-text}
-# Welcome
+### Hi, I'm Glenn Matlin
 
-I'm Glenn Matlin, a technology professional specializing in machine learning, software engineering, and building innovative solutions at the intersection of research and practical applications.
+I'm a technology professional specializing in machine learning, software engineering, and building innovative solutions at the intersection of research and practical applications.
 
 [About Me](about.qmd){.btn .btn-primary .btn-lg .me-3}
 [View Projects](projects.qmd){.btn .btn-outline-primary .btn-lg}
