@@ -23,11 +23,8 @@ featured: true
 
 # Featured image
 # Place an image named `featured.jpg/png` in this page's folder and customize its options here.
-image:
-  caption: 'LLM Evaluation Challenges'
-  focal_point: 'Center'
-  placement: 2
-  preview_only: false
+image: "featured.jpg"
+image_caption: "LLM Evaluation Challenges"
 
 authors:
   - glenn
