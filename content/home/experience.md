@@ -10,10 +10,7 @@ headless: true
 weight: 50
 
 title: Experience
-subtitle:
-
-# Date format for experience
-#   Refer to https://wowchemy.com/docs/customization/#date-format
+subtitle: "My Professional Experience"
 date_format: Jan 2006
 
 # Experiences.
