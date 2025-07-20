@@ -58,10 +58,8 @@ url_video: ''
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
-image:
-  caption: ''
-  focal_point: ''
-  preview_only: false
+image: "featured.png"
+image_caption: "UnfoldML: Cost-Aware and Uncertainty-Based Dynamic 2D Prediction for Multi-Stage Classification"
 
 # Associated Projects (optional).
 #   Associate this publication with one or more of your projects.
