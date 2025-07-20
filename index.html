@@ -34,11 +34,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9c7c03ab389b8c277e397e708ed6e314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4b21671d97fbeace61f61eff8c37c710.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -160,245 +161,113 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Glenn Matlin</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Blog</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./blog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Blog</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./post/llm-evaluation-challenges/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Challenges of Evaluating Large Language Models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Projects</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./project/flame/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FLAME - Financial Language Model Evaluation</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Knowledge Base</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Knowledgebase</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Cheatsheets</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./knowledgebase/cheatsheets/marp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Directives</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./knowledgebase/cheatsheets/tmux.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">tmux Cheat Sheet</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./knowledgebase/python/python3_logging_api.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">logging — Logging facility for Python — Python 3.13.1 documentation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./knowledgebase/python/python3_logging_cookbook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Logging Cookbook — Python 3.13.1 documentation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./knowledgebase/python/python3_logging_howto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Logging HOWTO — Python 3.13.1 documentation</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-  <ul>
-  <li><a href="#about-me" id="toc-about-me" class="nav-link active" data-scroll-target="#about-me">About Me</a>
-  <ul class="collapse">
-  <li><a href="#experience" id="toc-experience" class="nav-link" data-scroll-target="#experience">Experience</a></li>
-  <li><a href="#areas-of-interest" id="toc-areas-of-interest" class="nav-link" data-scroll-target="#areas-of-interest">Areas of Interest</a></li>
-  <li><a href="#recent-posts" id="toc-recent-posts" class="nav-link" data-scroll-target="#recent-posts">Recent Posts</a></li>
-  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
-  <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">Publications</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
 <!-- main -->
-<div class="quarto-about-trestles">
-  <div class="about-entity">
-    <img src="assets/media/glenn/headshot.jpg" class="about-image
-  rounded " style="width: 20em;">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Glenn Matlin</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    
+  
+    
   </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="https://github.com/gmatlin" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="https://linkedin.com/in/glennmatlin" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="mailto:glenn@glennmatlin.doctor" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
 
-<section id="about-me" class="level2">
-<h2 data-anchor-id="about-me">About Me</h2>
-<p>Welcome to my personal website! I’m Glenn Matlin, a technology professional with expertise in software development, data science, and machine learning.</p>
-<section id="experience" class="level3">
-<h3 data-anchor-id="experience">Experience</h3>
-<p>I have worked with various organizations including: - Change Healthcare - Komodo Health - LendUp - RichRelevance</p>
+
+<div class="hero-banner">
+<div class="content-block">
+<section id="welcome" class="level1 hero-text">
+<h1>Welcome</h1>
+<p>I’m Glenn Matlin, a technology professional specializing in machine learning, software engineering, and building innovative solutions at the intersection of research and practical applications.</p>
+<p><a href="./about.html" class="btn btn-primary btn-lg me-3">About Me</a> <a href="./projects.html" class="btn btn-outline-primary btn-lg">View Projects</a></p>
 </section>
-<section id="areas-of-interest" class="level3">
-<h3 data-anchor-id="areas-of-interest">Areas of Interest</h3>
-<ul>
-<li>Machine Learning &amp; AI</li>
-<li>Software Engineering</li>
-<li>Data Science</li>
-<li>Healthcare Technology</li>
-<li>Financial Technology</li>
-</ul>
+</div>
+</div>
+<section id="featured-work" class="level2">
+<h2 data-anchor-id="featured-work">Featured Work</h2>
+<div class="features">
+<section id="latest-project" class="level3 feature-card">
+<h3 data-anchor-id="latest-project">🚀 Latest Project</h3>
+<section id="flame---financial-language-model-evaluation" class="level4">
+<h4 data-anchor-id="flame---financial-language-model-evaluation"><a href="project/flame/">FLAME - Financial Language Model Evaluation</a></h4>
+<p>A comprehensive framework for evaluating large language models on financial domain knowledge, reasoning, and compliance tasks.</p>
 </section>
-<section id="recent-posts" class="level3">
-<h3 data-anchor-id="recent-posts">Recent Posts</h3>
-<ul>
-<li><a href="post/llm-evaluation-challenges/">LLM Evaluation Challenges</a></li>
-</ul>
 </section>
-<section id="projects" class="level3">
-<h3 data-anchor-id="projects">Projects</h3>
-<ul>
-<li><a href="project/flame/">FLAME Project</a></li>
-</ul>
+<section id="recent-post" class="level3 feature-card">
+<h3 data-anchor-id="recent-post">📝 Recent Post</h3>
+<section id="the-challenges-of-evaluating-large-language-models" class="level4">
+<h4 data-anchor-id="the-challenges-of-evaluating-large-language-models"><a href="post/llm-evaluation-challenges/">The Challenges of Evaluating Large Language Models</a></h4>
+<p>An exploration of current challenges in LLM evaluation and promising approaches for more comprehensive assessment frameworks.</p>
 </section>
-<section id="publications" class="level3">
-<h3 data-anchor-id="publications">Publications</h3>
-<ul>
-<li><a href="publication/example/">Example Publication</a></li>
-</ul>
+</section>
+<section id="latest-publication" class="level3 feature-card">
+<h3 data-anchor-id="latest-publication">📚 Latest Publication</h3>
+<section id="unfoldml-at-neurips-2022" class="level4">
+<h4 data-anchor-id="unfoldml-at-neurips-2022"><a href="publication/example/">UnfoldML at NeurIPS 2022</a></h4>
+<p>Cost-aware and uncertainty-based framework for dynamic 2D prediction in multi-stage classification systems.</p>
+</section>
+</section>
+</div>
+</section>
+<section id="areas-of-expertise" class="level2">
+<h2 data-anchor-id="areas-of-expertise">Areas of Expertise</h2>
+<div class="expertise-grid">
+<section id="machine-learning-ai" class="level3 expertise-item">
+<h3 data-anchor-id="machine-learning-ai">Machine Learning &amp; AI</h3>
+<p>Building and evaluating ML models with focus on Large Language Models and their real-world applications.</p>
+</section>
+<section id="software-engineering" class="level3 expertise-item">
+<h3 data-anchor-id="software-engineering">Software Engineering</h3>
+<p>Full-stack development with modern frameworks and industry best practices for scalable solutions.</p>
+</section>
+<section id="healthcare-technology" class="level3 expertise-item">
+<h3 data-anchor-id="healthcare-technology">Healthcare Technology</h3>
+<p>Leveraging technology and data science to improve healthcare outcomes and operational efficiency.</p>
+</section>
+<section id="financial-technology" class="level3 expertise-item">
+<h3 data-anchor-id="financial-technology">Financial Technology</h3>
+<p>Building secure and scalable financial services with focus on compliance and user experience.</p>
+</section>
+</div>
+</section>
+<section id="recent-experience" class="level2">
+<h2 data-anchor-id="recent-experience">Recent Experience</h2>
+<div class="companies">
+<p>I’ve had the privilege of working with leading organizations including <strong>Change Healthcare</strong>, <strong>Komodo Health</strong>, <strong>LendUp</strong>, and <strong>RichRelevance</strong>, where I’ve contributed to innovative solutions in healthcare technology, financial services, and personalization systems.</p>
+</div>
 <hr>
-<p><em>This site is built with <a href="https://quarto.org/">Quarto</a></em></p>
+<section id="lets-connect" class="level3 cta-section">
+<h3 data-anchor-id="lets-connect">Let’s Connect</h3>
+<p>I’m always interested in discussing new opportunities, collaborations, and interesting technical challenges.</p>
+<p><a href="mailto:glenn@glennmatlin.doctor" class="btn btn-primary">Get in Touch</a> <a href="uploads/resume.pdf" class="btn btn-outline-primary">Download Resume</a></p>
+</section>
 
 
 </section>
-</section>
-</main></div>
-</div>
- <!-- /main -->
+
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
