@@ -2,7 +2,7 @@
 created: 2024-12-14T18:20:26 (UTC -05:00)
 tags: []
 source: https://docs.python.org/3/howto/logging.html#tutorial-ref-links
-author: 
+ 
 ---
 
 # Logging HOWTO — Python 3.13.1 documentation
