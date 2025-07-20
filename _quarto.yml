@@ -4,6 +4,9 @@ project:
 
 website:
   title: "Glenn Matlin"
+  page-footer:
+    left: "&copy; 2025 Glenn Matlin. All rights reserved."
+    right: "Published with [Quarto](https://quarto.org/)."
 
 format:
   html:
