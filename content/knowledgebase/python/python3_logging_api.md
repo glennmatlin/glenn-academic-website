@@ -2,7 +2,7 @@
 created: 2024-12-14T18:23:15 (UTC -05:00)
 tags: []
 source: https://docs.python.org/3/library/logging.html
-author: 
+ 
 ---
 
 # logging — Logging facility for Python — Python 3.13.1 documentation
