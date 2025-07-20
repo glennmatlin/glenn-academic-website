@@ -1,9 +1,12 @@
 [project]
 name = "glenn-academic-website"
 version = "0.1.0"
-description = "Add your description here"
+description = "Academic website built with Quarto"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
-    "quarto>=0.1.0",
+    "jupyter>=1.0.0",
+    "pyyaml>=6.0.0",
+    "plotly>=5.0.0",
+    "pandas>=2.0.0",
 ]

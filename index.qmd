@@ -1,52 +1,83 @@
 ---
 title: "Glenn Matlin"
-about:
-  template: trestles
-  image: assets/media/glenn/headshot.jpg
-  links:
-    - icon: github
-      text: GitHub
-      href: https://github.com/gmatlin
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com/in/glennmatlin
-    - icon: envelope
-      text: Email
-      href: mailto:glenn@glennmatlin.doctor
+page-layout: custom
+toc: false
 ---
 
-## About Me
+::: {.hero-banner}
+::: {.content-block}
+::: {.hero-text}
+# Welcome
 
-Welcome to my personal website! I'm Glenn Matlin, a technology professional with expertise in software development, data science, and machine learning.
+I'm Glenn Matlin, a technology professional specializing in machine learning, software engineering, and building innovative solutions at the intersection of research and practical applications.
 
-### Experience
+[About Me](about.qmd){.btn .btn-primary .btn-lg .me-3}
+[View Projects](projects.qmd){.btn .btn-outline-primary .btn-lg}
+:::
+:::
+:::
 
-I have worked with various organizations including:
-- Change Healthcare
-- Komodo Health
-- LendUp
-- RichRelevance
+## Featured Work
 
-### Areas of Interest
+::: {.features}
 
-- Machine Learning & AI
-- Software Engineering
-- Data Science
-- Healthcare Technology
-- Financial Technology
+::: {.feature-card}
+### 🚀 Latest Project
+#### [FLAME - Financial Language Model Evaluation](project/flame/)
+A comprehensive framework for evaluating large language models on financial domain knowledge, reasoning, and compliance tasks.
+:::
 
-### Recent Posts
+::: {.feature-card}
+### 📝 Recent Post
+#### [The Challenges of Evaluating Large Language Models](post/llm-evaluation-challenges/)
+An exploration of current challenges in LLM evaluation and promising approaches for more comprehensive assessment frameworks.
+:::
 
-- [LLM Evaluation Challenges](content/post/llm-evaluation-challenges/)
+::: {.feature-card}
+### 📚 Latest Publication
+#### [UnfoldML at NeurIPS 2022](publication/example/)
+Cost-aware and uncertainty-based framework for dynamic 2D prediction in multi-stage classification systems.
+:::
 
-### Projects
+:::
 
-- [FLAME Project](content/project/flame/)
+## Areas of Expertise
 
-### Publications
+::: {.expertise-grid}
+::: {.expertise-item}
+### Machine Learning & AI
+Building and evaluating ML models with focus on Large Language Models and their real-world applications.
+:::
 
-- [Example Publication](content/publication/example/)
+::: {.expertise-item}
+### Software Engineering
+Full-stack development with modern frameworks and industry best practices for scalable solutions.
+:::
+
+::: {.expertise-item}
+### Healthcare Technology
+Leveraging technology and data science to improve healthcare outcomes and operational efficiency.
+:::
+
+::: {.expertise-item}
+### Financial Technology
+Building secure and scalable financial services with focus on compliance and user experience.
+:::
+:::
+
+## Recent Experience
+
+::: {.companies}
+I've had the privilege of working with leading organizations including **Change Healthcare**, **Komodo Health**, **LendUp**, and **RichRelevance**, where I've contributed to innovative solutions in healthcare technology, financial services, and personalization systems.
+:::
 
 ---
 
-*This site is built with [Quarto](https://quarto.org/)*
+:::: {.cta-section}
+### Let's Connect
+
+I'm always interested in discussing new opportunities, collaborations, and interesting technical challenges.
+
+[Get in Touch](mailto:glenn@glennmatlin.doctor){.btn .btn-primary}
+[Download Resume](uploads/resume.pdf){.btn .btn-outline-primary}
+::::

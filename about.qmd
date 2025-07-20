@@ -1,0 +1,62 @@
+---
+title: "About Me"
+image: assets/media/glenn/glenn.png
+about:
+  template: solana
+  image-shape: round
+  image-width: 20em
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/gmatlin
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/glennmatlin
+    - icon: envelope
+      text: Email
+      href: mailto:glenn@glennmatlin.doctor
+    - icon: file-pdf
+      text: Resume
+      href: uploads/resume.pdf
+---
+
+## Glenn Matlin
+
+I'm a technology professional with expertise in software development, data science, and machine learning. My work focuses on building innovative solutions that bridge the gap between cutting-edge research and practical applications.
+
+### Professional Experience
+
+Throughout my career, I've had the privilege of working with leading organizations in healthcare and technology:
+
+- **Change Healthcare** - Healthcare technology and insights
+- **Komodo Health** - Healthcare intelligence platform
+- **LendUp** - Financial technology and services
+- **RichRelevance** - Personalization and recommendation systems
+
+### Areas of Expertise
+
+My technical interests and expertise span several domains:
+
+- **Machine Learning & AI**: Building and evaluating ML models, with a focus on Large Language Models (LLMs) and their applications
+- **Software Engineering**: Full-stack development with modern frameworks and best practices
+- **Data Science**: Statistical analysis, data visualization, and predictive modeling
+- **Healthcare Technology**: Leveraging technology to improve healthcare outcomes
+- **Financial Technology**: Building secure and scalable financial services
+
+### Current Focus
+
+I'm currently exploring the intersection of AI and domain-specific applications, particularly in:
+
+- Evaluating and improving Large Language Models for specialized tasks
+- Building frameworks for responsible AI deployment
+- Creating tools that make advanced ML techniques accessible to domain experts
+
+### Education & Continuous Learning
+
+I believe in continuous learning and staying current with rapidly evolving technologies. I regularly contribute to open-source projects and share knowledge through technical writing and documentation.
+
+Feel free to explore my [blog posts](/blog.qmd), [projects](/projects.qmd), and [publications](/publications.qmd) to learn more about my work. You can also find various technical resources in my [knowledge base](/knowledgebase).
+
+---
+
+*Let's connect! Feel free to reach out via [email](mailto:glenn@glennmatlin.doctor) or connect on [LinkedIn](https://linkedin.com/in/glennmatlin).*

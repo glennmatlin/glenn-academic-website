@@ -1,0 +1,52 @@
+---
+title: "Glenn Matlin"
+about:
+  template: trestles
+  image: assets/media/glenn/headshot.jpg
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/gmatlin
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/glennmatlin
+    - icon: envelope
+      text: Email
+      href: mailto:glenn@glennmatlin.doctor
+---
+
+## About Me
+
+Welcome to my personal website! I'm Glenn Matlin, a technology professional with expertise in software development, data science, and machine learning.
+
+### Experience
+
+I have worked with various organizations including:
+- Change Healthcare
+- Komodo Health
+- LendUp
+- RichRelevance
+
+### Areas of Interest
+
+- Machine Learning & AI
+- Software Engineering
+- Data Science
+- Healthcare Technology
+- Financial Technology
+
+### Recent Posts
+
+- [LLM Evaluation Challenges](post/llm-evaluation-challenges/)
+
+### Projects
+
+- [FLAME Project](project/flame/)
+
+### Publications
+
+- [Example Publication](publication/example/)
+
+---
+
+*This site is built with [Quarto](https://quarto.org/)*

@@ -4,6 +4,42 @@ project:
 
 website:
   title: "Glenn Matlin"
+  site-url: "https://glennmatlin.com"
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: blog.qmd
+        text: Blog
+      - href: projects.qmd
+        text: Projects
+      - href: publications.qmd
+        text: Publications
+      - text: Knowledge Base
+        menu:
+          - href: knowledgebase/cheatsheets/tmux.md
+            text: tmux Cheatsheet
+          - href: knowledgebase/cheatsheets/marp.md
+            text: Marp Guide
+          - text: "---"
+          - text: "Python Logging"
+          - href: knowledgebase/python/python3_logging_howto.md
+            text: Logging How-To
+          - href: knowledgebase/python/python3_logging_cookbook.md
+            text: Logging Cookbook
+          - href: knowledgebase/python/python3_logging_api.md
+            text: Logging API
+    right:
+      - icon: github
+        href: https://github.com/gmatlin
+      - icon: linkedin
+        href: https://linkedin.com/in/glennmatlin
+      - icon: envelope
+        href: mailto:glenn@glennmatlin.doctor
+  
   page-footer:
     left: "&copy; 2025 Glenn Matlin. All rights reserved."
     right: "Published with [Quarto](https://quarto.org/)."
@@ -12,3 +48,4 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    toc: true

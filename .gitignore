@@ -7,12 +7,5 @@
 # MacOS
 .DS_Store
 
-# Hugo
-resources/
-public/
-jsconfig.json
+# Dependencies
 node_modules/
-go.sum
-.hugo_build.lock
-
-/.quarto/

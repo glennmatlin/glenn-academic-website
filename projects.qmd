@@ -1,0 +1,18 @@
+---
+title: "Projects"
+listing:
+  contents: project
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [image, title, description, categories]
+  grid-columns: 2
+page-layout: full
+title-block-banner: true
+---
+
+Here are some of the key projects I've worked on. These range from research initiatives to practical tools and frameworks designed to solve real-world problems.
+
+## Featured Projects
