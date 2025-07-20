@@ -2,7 +2,7 @@
 created: 2024-12-14T18:22:20 (UTC -05:00)
 tags: []
 source: https://docs.python.org/3/howto/logging-cookbook.html
-author: 
+ 
 ---
 
 # Logging Cookbook — Python 3.13.1 documentation
