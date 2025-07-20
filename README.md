@@ -29,3 +29,5 @@ To work on this site locally, you'll need to have Quarto and Python installed. T
 ## Publishing
 
 The site is automatically published to GitHub Pages via a GitHub Actions workflow. Any push to the `main` branch will trigger a new build and deployment.
+
+<!-- Trigger new workflow run -->
