@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>python3_logging_api – Glenn Matlin</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-17d0bf37f7016b094e565600d9551b64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="logging-logging-facility-for-python-python-3.13.1-documentation" class="level1">
+<h1>logging — Logging facility for Python — Python 3.13.1 documentation</h1>
+<p><strong>Source code:</strong> <a href="https://github.com/python/cpython/tree/3.13/Lib/logging/__init__.py">Lib/logging/__init__.py</a></p>
+<hr>
+<p>This module defines functions and classes which implement a flexible event logging system for applications and libraries.</p>
+<p>The key benefit of having the logging API provided by a standard library module is that all Python modules can participate in logging, so your application log can include your own messages integrated with messages from third-party modules.</p>
+<p>Here’s a simple example of idiomatic usage:</p>
+<pre><code># myapp.py
+import logging
+import mylib
+logger = logging.getLogger(__name__)
+
+def main():
+    logging.basicConfig(filename='myapp.log', level=logging.INFO)
+    logger.info('Started')
+    mylib.do_something()
+    logger.info('Finished')
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<pre><code># mylib.py
+import logging
+logger = logging.getLogger(__name__)
+
+def do_something():
+    logger.info('Doing something')
+</code></pre>
+<p>If you run <em>myapp.py</em>, you should see this in <em>myapp.log</em>:</p>
+<pre><code>INFO:__main__:Started
+INFO:mylib:Doing something
+INFO:__main__:Finished
+</code></pre>
+<p>The key feature of this idiomatic usage is that the majority of code is simply creating a module level logger with <code>getLogger(__name__)</code>, and using that logger to do any needed logging. This is concise, while allowing downstream code fine-grained control if needed. Logged messages to the module-level logger get forwarded to handlers of loggers in higher-level modules, all the way up to the highest-level logger known as the root logger; this approach is known as hierarchical logging.</p>
+<p>For logging to be useful, it needs to be configured: setting the levels and destinations for each logger, potentially changing how specific modules log, often based on command-line arguments or application configuration. In most cases, like the one above, only the root logger needs to be so configured, since all the lower level loggers at module level eventually forward their messages to its handlers. <a href="https://docs.python.org/3/library/logging.html#logging.basicConfig" title="logging.basicConfig"><code>basicConfig()</code></a> provides a quick way to configure the root logger that handles many use cases.</p>
+<p>The module provides a lot of functionality and flexibility. If you are unfamiliar with logging, the best way to get to grips with it is to view the tutorials (<strong>see the links above and on the right</strong>).</p>
+<p>The basic classes defined by the module, together with their attributes and methods, are listed in the sections below.</p>
+<ul>
+<li><p>Loggers expose the interface that application code directly uses.</p></li>
+<li><p>Handlers send the log records (created by loggers) to the appropriate destination.</p></li>
+<li><p>Filters provide a finer grained facility for determining which log records to output.</p></li>
+<li><p>Formatters specify the layout of log records in the final output.</p></li>
+</ul>
+<section id="logger-objects" class="level2">
+<h2 class="anchored" data-anchor-id="logger-objects">Logger Objects<a href="https://docs.python.org/3/library/logging.html#logger-objects" title="Link to this heading">¶</a></h2>
+<p>Loggers have the following attributes and methods. Note that Loggers should <em>NEVER</em> be instantiated directly, but always through the module-level function <code>logging.getLogger(name)</code>. Multiple calls to <a href="https://docs.python.org/3/library/logging.html#logging.getLogger" title="logging.getLogger"><code>getLogger()</code></a> with the same name will always return a reference to the same Logger object.</p>
+<p>The <code>name</code> is potentially a period-separated hierarchical value, like <code>foo.bar.baz</code> (though it could also be just plain <code>foo</code>, for example). Loggers that are further down in the hierarchical list are children of loggers higher up in the list. For example, given a logger with a name of <code>foo</code>, loggers with names of <code>foo.bar</code>, <code>foo.bar.baz</code>, and <code>foo.bam</code> are all descendants of <code>foo</code>. In addition, all loggers are descendants of the root logger. The logger name hierarchy is analogous to the Python package hierarchy, and identical to it if you organise your loggers on a per-module basis using the recommended construction <code>logging.getLogger(__name__)</code>. That’s because in a module, <code>__name__</code> is the module’s name in the Python package namespace.</p>
+<p><em>class</em> logging.Logger<a href="https://docs.python.org/3/library/logging.html#logging.Logger" title="Link to this definition">¶</a></p>
+<p>name<a href="https://docs.python.org/3/library/logging.html#logging.Logger.name" title="Link to this definition">¶</a></p>
+<p>This is the logger’s name, and is the value that was passed to <a href="https://docs.python.org/3/library/logging.html#logging.getLogger" title="logging.getLogger"><code>getLogger()</code></a> to obtain the logger.</p>
+<p>Note</p>
+<p>This attribute should be treated as read-only.</p>
+<p>level<a href="https://docs.python.org/3/library/logging.html#logging.Logger.level" title="Link to this definition">¶</a></p>
+<p>The threshold of this logger, as set by the <a href="https://docs.python.org/3/library/logging.html#logging.Logger.setLevel" title="logging.Logger.setLevel"><code>setLevel()</code></a> method.</p>
+<p>Note</p>
+<p>Do not set this attribute directly - always use <a href="https://docs.python.org/3/library/logging.html#logging.Logger.setLevel" title="logging.Logger.setLevel"><code>setLevel()</code></a>, which has checks for the level passed to it.</p>
+<p>parent<a href="https://docs.python.org/3/library/logging.html#logging.Logger.parent" title="Link to this definition">¶</a></p>
+<p>The parent logger of this logger. It may change based on later instantiation of loggers which are higher up in the namespace hierarchy.</p>
+<p>Note</p>
+<p>This value should be treated as read-only.</p>
+<p>propagate<a href="https://docs.python.org/3/library/logging.html#logging.Logger.propagate" title="Link to this definition">¶</a></p>
+<p>If this attribute evaluates to true, events logged to this logger will be passed to the handlers of higher level (ancestor) loggers, in addition to any handlers attached to this logger. Messages are passed directly to the ancestor loggers’ handlers - neither the level nor filters of the ancestor loggers in question are considered.</p>
+<p>If this evaluates to false, logging messages are not passed to the handlers of ancestor loggers.</p>
+<p>Spelling it out with an example: If the propagate attribute of the logger named <code>A.B.C</code> evaluates to true, any event logged to <code>A.B.C</code> via a method call such as <code>logging.getLogger('A.B.C').error(...)</code> will [subject to passing that logger’s level and filter settings] be passed in turn to any handlers attached to loggers named <code>A.B</code>, <code>A</code> and the root logger, after first being passed to any handlers attached to <code>A.B.C</code>. If any logger in the chain <code>A.B.C</code>, <code>A.B</code>, <code>A</code> has its <code>propagate</code> attribute set to false, then that is the last logger whose handlers are offered the event to handle, and propagation stops at that point.</p>
+<p>The constructor sets this attribute to <code>True</code>.</p>
+<p>Note</p>
+<p>If you attach a handler to a logger <em>and</em> one or more of its ancestors, it may emit the same record multiple times. In general, you should not need to attach a handler to more than one logger - if you just attach it to the appropriate logger which is highest in the logger hierarchy, then it will see all events logged by all descendant loggers, provided that their propagate setting is left set to <code>True</code>. A common scenario is to attach handlers only to the root logger, and to let propagation take care of the rest.</p>
+<p>handlers<a href="https://docs.python.org/3/library/logging.html#logging.Logger.handlers" title="Link to this definition">¶</a></p>
+<p>The list of handlers directly attached to this logger instance.</p>
+<p>Note</p>
+<p>This attribute should be treated as read-only; it is normally changed via the <a href="https://docs.python.org/3/library/logging.html#logging.Logger.addHandler" title="logging.Logger.addHandler"><code>addHandler()</code></a> and <a href="https://docs.python.org/3/library/logging.html#logging.Logger.removeHandler" title="logging.Logger.removeHandler"><code>removeHandler()</code></a> methods, which use locks to ensure thread-safe operation.</p>
+<p>disabled<a href="https://docs.python.org/3/library/logging.html#logging.Logger.disabled" title="Link to this definition">¶</a></p>
+<p>This attribute disables handling of any events. It is set to <code>False</code> in the initializer, and only changed by logging configuration code.</p>
+<p>Note</p>
+<p>This attribute should be treated as read-only.</p>
+<p>setLevel(<em>level</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.setLevel" title="Link to this definition">¶</a></p>
+<p>Sets the threshold for this logger to <em>level</em>. Logging messages which are less severe than <em>level</em> will be ignored; logging messages which have severity <em>level</em> or higher will be emitted by whichever handler or handlers service this logger, unless a handler’s level has been set to a higher severity level than <em>level</em>.</p>
+<p>When a logger is created, the level is set to <a href="https://docs.python.org/3/library/logging.html#logging.NOTSET" title="logging.NOTSET"><code>NOTSET</code></a> (which causes all messages to be processed when the logger is the root logger, or delegation to the parent when the logger is a non-root logger). Note that the root logger is created with level <a href="https://docs.python.org/3/library/logging.html#logging.WARNING" title="logging.WARNING"><code>WARNING</code></a>.</p>
+<p>The term ‘delegation to the parent’ means that if a logger has a level of NOTSET, its chain of ancestor loggers is traversed until either an ancestor with a level other than NOTSET is found, or the root is reached.</p>
+<p>If an ancestor is found with a level other than NOTSET, then that ancestor’s level is treated as the effective level of the logger where the ancestor search began, and is used to determine how a logging event is handled.</p>
+<p>If the root is reached, and it has a level of NOTSET, then all messages will be processed. Otherwise, the root’s level will be used as the effective level.</p>
+<p>See <a href="https://docs.python.org/3/library/logging.html#levels">Logging Levels</a> for a list of levels.</p>
+<p>Changed in version 3.2: The <em>level</em> parameter now accepts a string representation of the level such as ‘INFO’ as an alternative to the integer constants such as <a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="logging.INFO"><code>INFO</code></a>. Note, however, that levels are internally stored as integers, and methods such as e.g.&nbsp;<a href="https://docs.python.org/3/library/logging.html#logging.Logger.getEffectiveLevel" title="logging.Logger.getEffectiveLevel"><code>getEffectiveLevel()</code></a> and <a href="https://docs.python.org/3/library/logging.html#logging.Logger.isEnabledFor" title="logging.Logger.isEnabledFor"><code>isEnabledFor()</code></a> will return/expect to be passed integers.</p>
+<p>isEnabledFor(<em>level</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.isEnabledFor" title="Link to this definition">¶</a></p>
+<p>Indicates if a message of severity <em>level</em> would be processed by this logger. This method checks first the module-level level set by <code>logging.disable(level)</code> and then the logger’s effective level as determined by <a href="https://docs.python.org/3/library/logging.html#logging.Logger.getEffectiveLevel" title="logging.Logger.getEffectiveLevel"><code>getEffectiveLevel()</code></a>.</p>
+<p>getEffectiveLevel()<a href="https://docs.python.org/3/library/logging.html#logging.Logger.getEffectiveLevel" title="Link to this definition">¶</a></p>
+<p>Indicates the effective level for this logger. If a value other than <a href="https://docs.python.org/3/library/logging.html#logging.NOTSET" title="logging.NOTSET"><code>NOTSET</code></a> has been set using <a href="https://docs.python.org/3/library/logging.html#logging.Logger.setLevel" title="logging.Logger.setLevel"><code>setLevel()</code></a>, it is returned. Otherwise, the hierarchy is traversed towards the root until a value other than <a href="https://docs.python.org/3/library/logging.html#logging.NOTSET" title="logging.NOTSET"><code>NOTSET</code></a> is found, and that value is returned. The value returned is an integer, typically one of <a href="https://docs.python.org/3/library/logging.html#logging.DEBUG" title="logging.DEBUG"><code>logging.DEBUG</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="logging.INFO"><code>logging.INFO</code></a> etc.</p>
+<p>getChild(<em>suffix</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.getChild" title="Link to this definition">¶</a></p>
+<p>Returns a logger which is a descendant to this logger, as determined by the suffix. Thus, <code>logging.getLogger('abc').getChild('def.ghi')</code> would return the same logger as would be returned by <code>logging.getLogger('abc.def.ghi')</code>. This is a convenience method, useful when the parent logger is named using e.g.&nbsp;<code>__name__</code> rather than a literal string.</p>
+<p>Added in version 3.2.</p>
+<p>getChildren()<a href="https://docs.python.org/3/library/logging.html#logging.Logger.getChildren" title="Link to this definition">¶</a></p>
+<p>Returns a set of loggers which are immediate children of this logger. So for example <code>logging.getLogger().getChildren()</code> might return a set containing loggers named <code>foo</code> and <code>bar</code>, but a logger named <code>foo.bar</code> wouldn’t be included in the set. Likewise, <code>logging.getLogger('foo').getChildren()</code> might return a set including a logger named <code>foo.bar</code>, but it wouldn’t include one named <code>foo.bar.baz</code>.</p>
+<p>Added in version 3.12.</p>
+<p>debug(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.debug" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.DEBUG" title="logging.DEBUG"><code>DEBUG</code></a> on this logger. The <em>msg</em> is the message format string, and the <em>args</em> are the arguments which are merged into <em>msg</em> using the string formatting operator. (Note that this means that you can use keywords in the format string, together with a single dictionary argument.) No % formatting operation is performed on <em>msg</em> when no <em>args</em> are supplied.</p>
+<p>There are four keyword arguments in <em>kwargs</em> which are inspected: <em>exc_info</em>, <em>stack_info</em>, <em>stacklevel</em> and <em>extra</em>.</p>
+<p>If <em>exc_info</em> does not evaluate as false, it causes exception information to be added to the logging message. If an exception tuple (in the format returned by <a href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="sys.exc_info"><code>sys.exc_info()</code></a>) or an exception instance is provided, it is used; otherwise, <a href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="sys.exc_info"><code>sys.exc_info()</code></a> is called to get the exception information.</p>
+<p>The second optional keyword argument is <em>stack_info</em>, which defaults to <code>False</code>. If true, stack information is added to the logging message, including the actual logging call. Note that this is not the same stack information as that displayed through specifying <em>exc_info</em>: The former is stack frames from the bottom of the stack up to the logging call in the current thread, whereas the latter is information about stack frames which have been unwound, following an exception, while searching for exception handlers.</p>
+<p>You can specify <em>stack_info</em> independently of <em>exc_info</em>, e.g.&nbsp;to just show how you got to a certain point in your code, even when no exceptions were raised. The stack frames are printed following a header line which says:</p>
+<pre><code>Stack (most recent call last):
+</code></pre>
+<p>This mimics the <code>Traceback (most recent call last):</code> which is used when displaying exception frames.</p>
+<p>The third optional keyword argument is <em>stacklevel</em>, which defaults to <code>1</code>. If greater than 1, the corresponding number of stack frames are skipped when computing the line number and function name set in the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> created for the logging event. This can be used in logging helpers so that the function name, filename and line number recorded are not the information for the helper function/method, but rather its caller. The name of this parameter mirrors the equivalent one in the <a href="https://docs.python.org/3/library/warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code>warnings</code></a> module.</p>
+<p>The fourth keyword argument is <em>extra</em> which can be used to pass a dictionary which is used to populate the <a href="https://docs.python.org/3/reference/datamodel.html#object.__dict__" title="object.__dict__"><code>__dict__</code></a> of the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> created for the logging event with user-defined attributes. These custom attributes can then be used as you like. For example, they could be incorporated into logged messages. For example:</p>
+<pre><code>FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
+logging.basicConfig(format=FORMAT)
+d = {'clientip': '192.168.0.1', 'user': 'fbloggs'}
+logger = logging.getLogger('tcpserver')
+logger.warning('Protocol problem: %s', 'connection reset', extra=d)
+</code></pre>
+<p>would print something like</p>
+<pre><code>2006-02-08 22:20:02,165 192.168.0.1 fbloggs  Protocol problem: connection reset
+</code></pre>
+<p>The keys in the dictionary passed in <em>extra</em> should not clash with the keys used by the logging system. (See the section on <a href="https://docs.python.org/3/library/logging.html#logrecord-attributes">LogRecord attributes</a> for more information on which keys are used by the logging system.)</p>
+<p>If you choose to use these attributes in logged messages, you need to exercise some care. In the above example, for instance, the <a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="logging.Formatter"><code>Formatter</code></a> has been set up with a format string which expects ‘clientip’ and ‘user’ in the attribute dictionary of the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a>. If these are missing, the message will not be logged because a string formatting exception will occur. So in this case, you always need to pass the <em>extra</em> dictionary with these keys.</p>
+<p>While this might be annoying, this feature is intended for use in specialized circumstances, such as multi-threaded servers where the same code executes in many contexts, and interesting conditions which arise are dependent on this context (such as remote client IP address and authenticated user name, in the above example). In such circumstances, it is likely that specialized <a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="logging.Formatter"><code>Formatter</code></a>s would be used with particular <a href="https://docs.python.org/3/library/logging.html#logging.Handler" title="logging.Handler"><code>Handler</code></a>s.</p>
+<p>If no handler is attached to this logger (or any of its ancestors, taking into account the relevant <a href="https://docs.python.org/3/library/logging.html#logging.Logger.propagate" title="logging.Logger.propagate"><code>Logger.propagate</code></a> attributes), the message will be sent to the handler set on <a href="https://docs.python.org/3/library/logging.html#logging.lastResort" title="logging.lastResort"><code>lastResort</code></a>.</p>
+<p>Changed in version 3.2: The <em>stack_info</em> parameter was added.</p>
+<p>Changed in version 3.5: The <em>exc_info</em> parameter can now accept exception instances.</p>
+<p>Changed in version 3.8: The <em>stacklevel</em> parameter was added.</p>
+<p>info(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.info" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="logging.INFO"><code>INFO</code></a> on this logger. The arguments are interpreted as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>warning(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.warning" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.WARNING" title="logging.WARNING"><code>WARNING</code></a> on this logger. The arguments are interpreted as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>Note</p>
+<p>There is an obsolete method <code>warn</code> which is functionally identical to <code>warning</code>. As <code>warn</code> is deprecated, please do not use it - use <code>warning</code> instead.</p>
+<p>error(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.ERROR" title="logging.ERROR"><code>ERROR</code></a> on this logger. The arguments are interpreted as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>critical(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.critical" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.CRITICAL" title="logging.CRITICAL"><code>CRITICAL</code></a> on this logger. The arguments are interpreted as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>log(<em>level</em>, <em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="Link to this definition">¶</a></p>
+<p>Logs a message with integer level <em>level</em> on this logger. The other arguments are interpreted as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>exception(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.exception" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.ERROR" title="logging.ERROR"><code>ERROR</code></a> on this logger. The arguments are interpreted as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>. Exception info is added to the logging message. This method should only be called from an exception handler.</p>
+<p>addFilter(<em>filter</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.addFilter" title="Link to this definition">¶</a></p>
+<p>Adds the specified filter <em>filter</em> to this logger.</p>
+<p>removeFilter(<em>filter</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.removeFilter" title="Link to this definition">¶</a></p>
+<p>Removes the specified filter <em>filter</em> from this logger.</p>
+<p>filter(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.filter" title="Link to this definition">¶</a></p>
+<p>Apply this logger’s filters to the record and return <code>True</code> if the record is to be processed. The filters are consulted in turn, until one of them returns a false value. If none of them return a false value, the record will be processed (passed to handlers). If one returns a false value, no further processing of the record occurs.</p>
+<p>addHandler(<em>hdlr</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.addHandler" title="Link to this definition">¶</a></p>
+<p>Adds the specified handler <em>hdlr</em> to this logger.</p>
+<p>removeHandler(<em>hdlr</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.removeHandler" title="Link to this definition">¶</a></p>
+<p>Removes the specified handler <em>hdlr</em> from this logger.</p>
+<p>findCaller(<em>stack_info=False</em>, <em>stacklevel=1</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.findCaller" title="Link to this definition">¶</a></p>
+<p>Finds the caller’s source filename and line number. Returns the filename, line number, function name and stack information as a 4-element tuple. The stack information is returned as <code>None</code> unless <em>stack_info</em> is <code>True</code>.</p>
+<p>The <em>stacklevel</em> parameter is passed from code calling the <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a> and other APIs. If greater than 1, the excess is used to skip stack frames before determining the values to be returned. This will generally be useful when calling logging APIs from helper/wrapper code, so that the information in the event log refers not to the helper/wrapper code, but to the code that calls it.</p>
+<p>handle(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.handle" title="Link to this definition">¶</a></p>
+<p>Handles a record by passing it to all handlers associated with this logger and its ancestors (until a false value of <em>propagate</em> is found). This method is used for unpickled records received from a socket, as well as those created locally. Logger-level filtering is applied using <a href="https://docs.python.org/3/library/logging.html#logging.Logger.filter" title="logging.Logger.filter"><code>filter()</code></a>.</p>
+<p>makeRecord(<em>name</em>, <em>level</em>, <em>fn</em>, <em>lno</em>, <em>msg</em>, <em>args</em>, <em>exc_info</em>, <em>func=None</em>, <em>extra=None</em>, <em>sinfo=None</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Logger.makeRecord" title="Link to this definition">¶</a></p>
+<p>This is a factory method which can be overridden in subclasses to create specialized <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> instances.</p>
+<p>hasHandlers()<a href="https://docs.python.org/3/library/logging.html#logging.Logger.hasHandlers" title="Link to this definition">¶</a></p>
+<p>Checks to see if this logger has any handlers configured. This is done by looking for handlers in this logger and its parents in the logger hierarchy. Returns <code>True</code> if a handler was found, else <code>False</code>. The method stops searching up the hierarchy whenever a logger with the ‘propagate’ attribute set to false is found - that will be the last logger which is checked for the existence of handlers.</p>
+<p>Added in version 3.2.</p>
+<p>Changed in version 3.7: Loggers can now be pickled and unpickled.</p>
+</section>
+<section id="logging-levels" class="level2">
+<h2 class="anchored" data-anchor-id="logging-levels">Logging Levels<a href="https://docs.python.org/3/library/logging.html#logging-levels" title="Link to this heading">¶</a></h2>
+<p>The numeric values of logging levels are given in the following table. These are primarily of interest if you want to define your own levels, and need them to have specific values relative to the predefined levels. If you define a level with the same numeric value, it overwrites the predefined value; the predefined name is lost.</p>
+<div class="line-block"></div>
+<p>Level</p>
+<p>|</p>
+<p>Numeric value</p>
+<p>|</p>
+<p>What it means / When to use it</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>logging.NOTSET<a href="https://docs.python.org/3/library/logging.html#logging.NOTSET" title="Link to this definition">¶</a></p>
+<p>|</p>
+<p>0</p>
+<p>|</p>
+<p>When set on a logger, indicates that ancestor loggers are to be consulted to determine the effective level. If that still resolves to <code>NOTSET</code>, then all events are logged. When set on a handler, all events are handled.</p>
+<p>| |</p>
+<p>logging.DEBUG<a href="https://docs.python.org/3/library/logging.html#logging.DEBUG" title="Link to this definition">¶</a></p>
+<p>|</p>
+<p>10</p>
+<p>|</p>
+<p>Detailed information, typically only of interest to a developer trying to diagnose a problem.</p>
+<p>| |</p>
+<p>logging.INFO<a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="Link to this definition">¶</a></p>
+<p>|</p>
+<p>20</p>
+<p>|</p>
+<p>Confirmation that things are working as expected.</p>
+<p>| |</p>
+<p>logging.WARNING<a href="https://docs.python.org/3/library/logging.html#logging.WARNING" title="Link to this definition">¶</a></p>
+<p>|</p>
+<p>30</p>
+<p>|</p>
+<p>An indication that something unexpected happened, or that a problem might occur in the near future (e.g.&nbsp;‘disk space low’). The software is still working as expected.</p>
+<p>| |</p>
+<p>logging.ERROR<a href="https://docs.python.org/3/library/logging.html#logging.ERROR" title="Link to this definition">¶</a></p>
+<p>|</p>
+<p>40</p>
+<p>|</p>
+<p>Due to a more serious problem, the software has not been able to perform some function.</p>
+<p>| |</p>
+<p>logging.CRITICAL<a href="https://docs.python.org/3/library/logging.html#logging.CRITICAL" title="Link to this definition">¶</a></p>
+<p>|</p>
+<p>50</p>
+<p>|</p>
+<p>A serious error, indicating that the program itself may be unable to continue running.</p>
+<p>|</p>
+</section>
+<section id="handler-objects" class="level2">
+<h2 class="anchored" data-anchor-id="handler-objects">Handler Objects<a href="https://docs.python.org/3/library/logging.html#handler-objects" title="Link to this heading">¶</a></h2>
+<p>Handlers have the following attributes and methods. Note that <a href="https://docs.python.org/3/library/logging.html#logging.Handler" title="logging.Handler"><code>Handler</code></a> is never instantiated directly; this class acts as a base for more useful subclasses. However, the <code>__init__()</code> method in subclasses needs to call <a href="https://docs.python.org/3/library/logging.html#logging.Handler.__init__" title="logging.Handler.__init__"><code>Handler.__init__()</code></a>.</p>
+<p><em>class</em> logging.Handler<a href="https://docs.python.org/3/library/logging.html#logging.Handler" title="Link to this definition">¶</a></p>
+<p>__init__(<em>level=NOTSET</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.__init__" title="Link to this definition">¶</a></p>
+<p>Initializes the <a href="https://docs.python.org/3/library/logging.html#logging.Handler" title="logging.Handler"><code>Handler</code></a> instance by setting its level, setting the list of filters to the empty list and creating a lock (using <a href="https://docs.python.org/3/library/logging.html#logging.Handler.createLock" title="logging.Handler.createLock"><code>createLock()</code></a>) for serializing access to an I/O mechanism.</p>
+<p>createLock()<a href="https://docs.python.org/3/library/logging.html#logging.Handler.createLock" title="Link to this definition">¶</a></p>
+<p>Initializes a thread lock which can be used to serialize access to underlying I/O functionality which may not be threadsafe.</p>
+<p>acquire()<a href="https://docs.python.org/3/library/logging.html#logging.Handler.acquire" title="Link to this definition">¶</a></p>
+<p>Acquires the thread lock created with <a href="https://docs.python.org/3/library/logging.html#logging.Handler.createLock" title="logging.Handler.createLock"><code>createLock()</code></a>.</p>
+<p>release()<a href="https://docs.python.org/3/library/logging.html#logging.Handler.release" title="Link to this definition">¶</a></p>
+<p>Releases the thread lock acquired with <a href="https://docs.python.org/3/library/logging.html#logging.Handler.acquire" title="logging.Handler.acquire"><code>acquire()</code></a>.</p>
+<p>setLevel(<em>level</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.setLevel" title="Link to this definition">¶</a></p>
+<p>Sets the threshold for this handler to <em>level</em>. Logging messages which are less severe than <em>level</em> will be ignored. When a handler is created, the level is set to <a href="https://docs.python.org/3/library/logging.html#logging.NOTSET" title="logging.NOTSET"><code>NOTSET</code></a> (which causes all messages to be processed).</p>
+<p>See <a href="https://docs.python.org/3/library/logging.html#levels">Logging Levels</a> for a list of levels.</p>
+<p>Changed in version 3.2: The <em>level</em> parameter now accepts a string representation of the level such as ‘INFO’ as an alternative to the integer constants such as <a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="logging.INFO"><code>INFO</code></a>.</p>
+<p>setFormatter(<em>fmt</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.setFormatter" title="Link to this definition">¶</a></p>
+<p>Sets the <a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="logging.Formatter"><code>Formatter</code></a> for this handler to <em>fmt</em>.</p>
+<p>addFilter(<em>filter</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.addFilter" title="Link to this definition">¶</a></p>
+<p>Adds the specified filter <em>filter</em> to this handler.</p>
+<p>removeFilter(<em>filter</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.removeFilter" title="Link to this definition">¶</a></p>
+<p>Removes the specified filter <em>filter</em> from this handler.</p>
+<p>filter(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.filter" title="Link to this definition">¶</a></p>
+<p>Apply this handler’s filters to the record and return <code>True</code> if the record is to be processed. The filters are consulted in turn, until one of them returns a false value. If none of them return a false value, the record will be emitted. If one returns a false value, the handler will not emit the record.</p>
+<p>flush()<a href="https://docs.python.org/3/library/logging.html#logging.Handler.flush" title="Link to this definition">¶</a></p>
+<p>Ensure all logging output has been flushed. This version does nothing and is intended to be implemented by subclasses.</p>
+<p>close()<a href="https://docs.python.org/3/library/logging.html#logging.Handler.close" title="Link to this definition">¶</a></p>
+<p>Tidy up any resources used by the handler. This version does no output but removes the handler from an internal list of handlers which is closed when <a href="https://docs.python.org/3/library/logging.html#logging.shutdown" title="logging.shutdown"><code>shutdown()</code></a> is called. Subclasses should ensure that this gets called from overridden <a href="https://docs.python.org/3/library/logging.html#logging.Handler.close" title="logging.Handler.close"><code>close()</code></a> methods.</p>
+<p>handle(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.handle" title="Link to this definition">¶</a></p>
+<p>Conditionally emits the specified logging record, depending on filters which may have been added to the handler. Wraps the actual emission of the record with acquisition/release of the I/O thread lock.</p>
+<p>handleError(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.handleError" title="Link to this definition">¶</a></p>
+<p>This method should be called from handlers when an exception is encountered during an <a href="https://docs.python.org/3/library/logging.html#logging.Handler.emit" title="logging.Handler.emit"><code>emit()</code></a> call. If the module-level attribute <a href="https://docs.python.org/3/library/logging.html#logging.raiseExceptions" title="logging.raiseExceptions"><code>raiseExceptions</code></a> is <code>False</code>, exceptions get silently ignored. This is what is mostly wanted for a logging system - most users will not care about errors in the logging system, they are more interested in application errors. You could, however, replace this with a custom handler if you wish. The specified record is the one which was being processed when the exception occurred. (The default value of <a href="https://docs.python.org/3/library/logging.html#logging.raiseExceptions" title="logging.raiseExceptions"><code>raiseExceptions</code></a> is <code>True</code>, as that is more useful during development).</p>
+<p>format(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.format" title="Link to this definition">¶</a></p>
+<p>Do formatting for a record - if a formatter is set, use it. Otherwise, use the default formatter for the module.</p>
+<p>emit(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Handler.emit" title="Link to this definition">¶</a></p>
+<p>Do whatever it takes to actually log the specified logging record. This version is intended to be implemented by subclasses and so raises a <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="NotImplementedError"><code>NotImplementedError</code></a>.</p>
+<p>Warning</p>
+<p>This method is called after a handler-level lock is acquired, which is released after this method returns. When you override this method, note that you should be careful when calling anything that invokes other parts of the logging API which might do locking, because that might result in a deadlock. Specifically:</p>
+<ul>
+<li><p>Logging configuration APIs acquire the module-level lock, and then individual handler-level locks as those handlers are configured.</p></li>
+<li><p>Many logging APIs lock the module-level lock. If such an API is called from this method, it could cause a deadlock if a configuration call is made on another thread, because that thread will try to acquire the module-level lock <em>before</em> the handler-level lock, whereas this thread tries to acquire the module-level lock <em>after</em> the handler-level lock (because in this method, the handler-level lock has already been acquired).</p></li>
+</ul>
+<p>For a list of handlers included as standard, see <a href="https://docs.python.org/3/library/logging.handlers.html#module-logging.handlers" title="logging.handlers: Handlers for the logging module."><code>logging.handlers</code></a>.</p>
+</section>
+<section id="formatter-objects" class="level2">
+<h2 class="anchored" data-anchor-id="formatter-objects">Formatter Objects<a href="https://docs.python.org/3/library/logging.html#formatter-objects" title="Link to this heading">¶</a></h2>
+<p><em>class</em> logging.Formatter(<em>fmt=None</em>, <em>datefmt=None</em>, <em>style=‘%’</em>, <em>validate=True</em>, <em>*</em>, <em>defaults=None</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="Link to this definition">¶</a></p>
+<p>Responsible for converting a <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> to an output string to be interpreted by a human or external system.</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>fmt</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a>) – A format string in the given <em>style</em> for the logged output as a whole. The possible mapping keys are drawn from the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> object’s <a href="https://docs.python.org/3/library/logging.html#logrecord-attributes">LogRecord attributes</a>. If not specified, <code>'%(message)s'</code> is used, which is just the logged message.</p></li>
+<li><p><strong>datefmt</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a>) – A format string in the given <em>style</em> for the date/time portion of the logged output. If not specified, the default described in <a href="https://docs.python.org/3/library/logging.html#logging.Formatter.formatTime" title="logging.Formatter.formatTime"><code>formatTime()</code></a> is used.</p></li>
+<li><p><strong>style</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a>) – Can be one of <code>'%'</code>, <code>'{'</code> or <code>'$'</code> and determines how the format string will be merged with its data: using one of <a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">printf-style String Formatting</a> (<code>%</code>), <a href="https://docs.python.org/3/library/stdtypes.html#str.format" title="str.format"><code>str.format()</code></a> (<code>{</code>) or <a href="https://docs.python.org/3/library/string.html#string.Template" title="string.Template"><code>string.Template</code></a> (<code>$</code>). This only applies to <em>fmt</em> and <em>datefmt</em> (e.g.&nbsp;<code>'%(message)s'</code> versus <code>'{message}'</code>), not to the actual log messages passed to the logging methods. However, there are <a href="https://docs.python.org/3/howto/logging-cookbook.html#formatting-styles">other ways</a> to use <code>{</code>- and <code>$</code>-formatting for log messages.</p></li>
+<li><p><strong>validate</strong> (<a href="https://docs.python.org/3/library/functions.html#bool" title="bool"><em>bool</em></a>) – If <code>True</code> (the default), incorrect or mismatched <em>fmt</em> and <em>style</em> will raise a <a href="https://docs.python.org/3/library/exceptions.html#ValueError" title="ValueError"><code>ValueError</code></a>; for example, <code>logging.Formatter('%(asctime)s - %(message)s', style='{')</code>.</p></li>
+<li><p><strong>defaults</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="dict"><em>dict</em></a><em>[</em><a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a><em>,</em> _Any__]_) – A dictionary with default values to use in custom fields. For example, <code>logging.Formatter('%(ip)s %(message)s', defaults={"ip": None})</code></p></li>
+</ul>
+<p>Changed in version 3.2: Added the <em>style</em> parameter.</p>
+<p>Changed in version 3.8: Added the <em>validate</em> parameter.</p>
+<p>Changed in version 3.10: Added the <em>defaults</em> parameter.</p>
+<p>format(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Formatter.format" title="Link to this definition">¶</a></p>
+<p>The record’s attribute dictionary is used as the operand to a string formatting operation. Returns the resulting string. Before formatting the dictionary, a couple of preparatory steps are carried out. The <em>message</em> attribute of the record is computed using <em>msg</em> % <em>args</em>. If the formatting string contains <code>'(asctime)'</code>, <a href="https://docs.python.org/3/library/logging.html#logging.Formatter.formatTime" title="logging.Formatter.formatTime"><code>formatTime()</code></a> is called to format the event time. If there is exception information, it is formatted using <a href="https://docs.python.org/3/library/logging.html#logging.Formatter.formatException" title="logging.Formatter.formatException"><code>formatException()</code></a> and appended to the message. Note that the formatted exception information is cached in attribute <em>exc_text</em>. This is useful because the exception information can be pickled and sent across the wire, but you should be careful if you have more than one <a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="logging.Formatter"><code>Formatter</code></a> subclass which customizes the formatting of exception information. In this case, you will have to clear the cached value (by setting the <em>exc_text</em> attribute to <code>None</code>) after a formatter has done its formatting, so that the next formatter to handle the event doesn’t use the cached value, but recalculates it afresh.</p>
+<p>If stack information is available, it’s appended after the exception information, using <a href="https://docs.python.org/3/library/logging.html#logging.Formatter.formatStack" title="logging.Formatter.formatStack"><code>formatStack()</code></a> to transform it if necessary.</p>
+<p>formatTime(<em>record</em>, <em>datefmt=None</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Formatter.formatTime" title="Link to this definition">¶</a></p>
+<p>This method should be called from <a href="https://docs.python.org/3/library/functions.html#format" title="format"><code>format()</code></a> by a formatter which wants to make use of a formatted time. This method can be overridden in formatters to provide for any specific requirement, but the basic behavior is as follows: if <em>datefmt</em> (a string) is specified, it is used with <a href="https://docs.python.org/3/library/time.html#time.strftime" title="time.strftime"><code>time.strftime()</code></a> to format the creation time of the record. Otherwise, the format ‘%Y-%m-%d %H:%M:%S,uuu’ is used, where the uuu part is a millisecond value and the other letters are as per the <a href="https://docs.python.org/3/library/time.html#time.strftime" title="time.strftime"><code>time.strftime()</code></a> documentation. An example time in this format is <code>2003-01-23 00:29:50,411</code>. The resulting string is returned.</p>
+<p>This function uses a user-configurable function to convert the creation time to a tuple. By default, <a href="https://docs.python.org/3/library/time.html#time.localtime" title="time.localtime"><code>time.localtime()</code></a> is used; to change this for a particular formatter instance, set the <code>converter</code> attribute to a function with the same signature as <a href="https://docs.python.org/3/library/time.html#time.localtime" title="time.localtime"><code>time.localtime()</code></a> or <a href="https://docs.python.org/3/library/time.html#time.gmtime" title="time.gmtime"><code>time.gmtime()</code></a>. To change it for all formatters, for example if you want all logging times to be shown in GMT, set the <code>converter</code> attribute in the <code>Formatter</code> class.</p>
+<p>Changed in version 3.3: Previously, the default format was hard-coded as in this example: <code>2010-09-06 22:38:15,292</code> where the part before the comma is handled by a strptime format string (<code>'%Y-%m-%d %H:%M:%S'</code>), and the part after the comma is a millisecond value. Because strptime does not have a format placeholder for milliseconds, the millisecond value is appended using another format string, <code>'%s,%03d'</code> — and both of these format strings have been hardcoded into this method. With the change, these strings are defined as class-level attributes which can be overridden at the instance level when desired. The names of the attributes are <code>default_time_format</code> (for the strptime format string) and <code>default_msec_format</code> (for appending the millisecond value).</p>
+<p>Changed in version 3.9: The <code>default_msec_format</code> can be <code>None</code>.</p>
+<p>formatException(<em>exc_info</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Formatter.formatException" title="Link to this definition">¶</a></p>
+<p>Formats the specified exception information (a standard exception tuple as returned by <a href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="sys.exc_info"><code>sys.exc_info()</code></a>) as a string. This default implementation just uses <a href="https://docs.python.org/3/library/traceback.html#traceback.print_exception" title="traceback.print_exception"><code>traceback.print_exception()</code></a>. The resulting string is returned.</p>
+<p>formatStack(<em>stack_info</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Formatter.formatStack" title="Link to this definition">¶</a></p>
+<p>Formats the specified stack information (a string as returned by <a href="https://docs.python.org/3/library/traceback.html#traceback.print_stack" title="traceback.print_stack"><code>traceback.print_stack()</code></a>, but with the last newline removed) as a string. This default implementation just returns the input value.</p>
+<p><em>class</em> logging.BufferingFormatter(<em>linefmt=None</em>)<a href="https://docs.python.org/3/library/logging.html#logging.BufferingFormatter" title="Link to this definition">¶</a></p>
+<p>A base formatter class suitable for subclassing when you want to format a number of records. You can pass a <a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="logging.Formatter"><code>Formatter</code></a> instance which you want to use to format each line (that corresponds to a single record). If not specified, the default formatter (which just outputs the event message) is used as the line formatter.</p>
+<p>Return a header for a list of <em>records</em>. The base implementation just returns the empty string. You will need to override this method if you want specific behaviour, e.g.&nbsp;to show the count of records, a title or a separator line.</p>
+<p>Return a footer for a list of <em>records</em>. The base implementation just returns the empty string. You will need to override this method if you want specific behaviour, e.g.&nbsp;to show the count of records or a separator line.</p>
+<p>format(<em>records</em>)<a href="https://docs.python.org/3/library/logging.html#logging.BufferingFormatter.format" title="Link to this definition">¶</a></p>
+<p>Return formatted text for a list of <em>records</em>. The base implementation just returns the empty string if there are no records; otherwise, it returns the concatenation of the header, each record formatted with the line formatter, and the footer.</p>
+</section>
+<section id="filter-objects" class="level2">
+<h2 class="anchored" data-anchor-id="filter-objects">Filter Objects<a href="https://docs.python.org/3/library/logging.html#filter-objects" title="Link to this heading">¶</a></h2>
+<p><code>Filters</code> can be used by <code>Handlers</code> and <code>Loggers</code> for more sophisticated filtering than is provided by levels. The base filter class only allows events which are below a certain point in the logger hierarchy. For example, a filter initialized with ‘A.B’ will allow events logged by loggers ‘A.B’, ‘A.B.C’, ‘A.B.C.D’, ‘A.B.D’ etc. but not ‘A.BB’, ‘B.A.B’ etc. If initialized with the empty string, all events are passed.</p>
+<p><em>class</em> logging.Filter(<em>name=’’</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Filter" title="Link to this definition">¶</a></p>
+<p>Returns an instance of the <a href="https://docs.python.org/3/library/logging.html#logging.Filter" title="logging.Filter"><code>Filter</code></a> class. If <em>name</em> is specified, it names a logger which, together with its children, will have its events allowed through the filter. If <em>name</em> is the empty string, allows every event.</p>
+<p>filter(<em>record</em>)<a href="https://docs.python.org/3/library/logging.html#logging.Filter.filter" title="Link to this definition">¶</a></p>
+<p>Is the specified record to be logged? Returns false for no, true for yes. Filters can either modify log records in-place or return a completely different record instance which will replace the original log record in any future processing of the event.</p>
+<p>Note that filters attached to handlers are consulted before an event is emitted by the handler, whereas filters attached to loggers are consulted whenever an event is logged (using <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.info" title="logging.info"><code>info()</code></a>, etc.), before sending an event to handlers. This means that events which have been generated by descendant loggers will not be filtered by a logger’s filter setting, unless the filter has also been applied to those descendant loggers.</p>
+<p>You don’t actually need to subclass <code>Filter</code>: you can pass any instance which has a <code>filter</code> method with the same semantics.</p>
+<p>Changed in version 3.2: You don’t need to create specialized <code>Filter</code> classes, or use other classes with a <code>filter</code> method: you can use a function (or other callable) as a filter. The filtering logic will check to see if the filter object has a <code>filter</code> attribute: if it does, it’s assumed to be a <code>Filter</code> and its <a href="https://docs.python.org/3/library/logging.html#logging.Filter.filter" title="logging.Filter.filter"><code>filter()</code></a> method is called. Otherwise, it’s assumed to be a callable and called with the record as the single parameter. The returned value should conform to that returned by <a href="https://docs.python.org/3/library/logging.html#logging.Filter.filter" title="logging.Filter.filter"><code>filter()</code></a>.</p>
+<p>Changed in version 3.12: You can now return a <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> instance from filters to replace the log record rather than modifying it in place. This allows filters attached to a <a href="https://docs.python.org/3/library/logging.html#logging.Handler" title="logging.Handler"><code>Handler</code></a> to modify the log record before it is emitted, without having side effects on other handlers.</p>
+<p>Although filters are used primarily to filter records based on more sophisticated criteria than levels, they get to see every record which is processed by the handler or logger they’re attached to: this can be useful if you want to do things like counting how many records were processed by a particular logger or handler, or adding, changing or removing attributes in the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> being processed. Obviously changing the LogRecord needs to be done with some care, but it does allow the injection of contextual information into logs (see <a href="https://docs.python.org/3/howto/logging-cookbook.html#filters-contextual">Using Filters to impart contextual information</a>).</p>
+</section>
+<section id="logrecord-objects" class="level2">
+<h2 class="anchored" data-anchor-id="logrecord-objects">LogRecord Objects<a href="https://docs.python.org/3/library/logging.html#logrecord-objects" title="Link to this heading">¶</a></h2>
+<p><a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> instances are created automatically by the <a href="https://docs.python.org/3/library/logging.html#logging.Logger" title="logging.Logger"><code>Logger</code></a> every time something is logged, and can be created manually via <a href="https://docs.python.org/3/library/logging.html#logging.makeLogRecord" title="logging.makeLogRecord"><code>makeLogRecord()</code></a> (for example, from a pickled event received over the wire).</p>
+<p><em>class</em> logging.LogRecord(<em>name</em>, <em>level</em>, <em>pathname</em>, <em>lineno</em>, <em>msg</em>, <em>args</em>, <em>exc_info</em>, <em>func=None</em>, <em>sinfo=None</em>)<a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="Link to this definition">¶</a></p>
+<p>Contains all the information pertinent to the event being logged.</p>
+<p>The primary information is passed in <em>msg</em> and <em>args</em>, which are combined using <code>msg % args</code> to create the <code>message</code> attribute of the record.</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>name</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a>) – The name of the logger used to log the event represented by this <code>LogRecord</code>. Note that the logger name in the <code>LogRecord</code> will always have this value, even though it may be emitted by a handler attached to a different (ancestor) logger.</p></li>
+<li><p><strong>level</strong> (<a href="https://docs.python.org/3/library/functions.html#int" title="int"><em>int</em></a>) – The <a href="https://docs.python.org/3/library/logging.html#levels">numeric level</a> of the logging event (such as <code>10</code> for <code>DEBUG</code>, <code>20</code> for <code>INFO</code>, etc). Note that this is converted to <em>two</em> attributes of the LogRecord: <code>levelno</code> for the numeric value and <code>levelname</code> for the corresponding level name.</p></li>
+<li><p><strong>pathname</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a>) – The full string path of the source file where the logging call was made.</p></li>
+<li><p><strong>lineno</strong> (<a href="https://docs.python.org/3/library/functions.html#int" title="int"><em>int</em></a>) – The line number in the source file where the logging call was made.</p></li>
+<li><p><strong>msg</strong> (<a href="https://docs.python.org/3/library/typing.html#typing.Any" title="typing.Any"><em>Any</em></a>) – The event description message, which can be a %-format string with placeholders for variable data, or an arbitrary object (see <a href="https://docs.python.org/3/howto/logging.html#arbitrary-object-messages">Using arbitrary objects as messages</a>).</p></li>
+<li><p><strong>args</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="tuple"><em>tuple</em></a> <em>|</em> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="dict"><em>dict</em></a><em>[</em><a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a><em>,</em> <a href="https://docs.python.org/3/library/typing.html#typing.Any" title="typing.Any"><em>Any</em></a><em>]</em>) – Variable data to merge into the <em>msg</em> argument to obtain the event description.</p></li>
+<li><p><strong>exc_info</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="tuple"><em>tuple</em></a><em>[</em><a href="https://docs.python.org/3/library/functions.html#type" title="type"><em>type</em></a><em>[</em><a href="https://docs.python.org/3/library/exceptions.html#BaseException" title="BaseException"><em>BaseException</em></a>_]__,_ <a href="https://docs.python.org/3/library/exceptions.html#BaseException" title="BaseException"><em>BaseException</em></a><em>,</em> <a href="https://docs.python.org/3/library/types.html#types.TracebackType" title="types.TracebackType"><em>types.TracebackType</em></a><em>]</em> <em>|</em> <em>None</em>) – An exception tuple with the current exception information, as returned by <a href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="sys.exc_info"><code>sys.exc_info()</code></a>, or <code>None</code> if no exception information is available.</p></li>
+<li><p><strong>func</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a> <em>|</em> <em>None</em>) – The name of the function or method from which the logging call was invoked.</p></li>
+<li><p><strong>sinfo</strong> (<a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><em>str</em></a> <em>|</em> <em>None</em>) – A text string representing stack information from the base of the stack in the current thread, up to the logging call.</p></li>
+</ul>
+<p>getMessage()<a href="https://docs.python.org/3/library/logging.html#logging.LogRecord.getMessage" title="Link to this definition">¶</a></p>
+<p>Returns the message for this <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> instance after merging any user-supplied arguments with the message. If the user-supplied message argument to the logging call is not a string, <a href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><code>str()</code></a> is called on it to convert it to a string. This allows use of user-defined classes as messages, whose <code>__str__</code> method can return the actual format string to be used.</p>
+<p>Changed in version 3.2: The creation of a <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> has been made more configurable by providing a factory which is used to create the record. The factory can be set using <a href="https://docs.python.org/3/library/logging.html#logging.getLogRecordFactory" title="logging.getLogRecordFactory"><code>getLogRecordFactory()</code></a> and <a href="https://docs.python.org/3/library/logging.html#logging.setLogRecordFactory" title="logging.setLogRecordFactory"><code>setLogRecordFactory()</code></a> (see this for the factory’s signature).</p>
+<p>This functionality can be used to inject your own values into a <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> at creation time. You can use the following pattern:</p>
+<pre><code>old_factory = logging.getLogRecordFactory()
+
+def record_factory(*args, **kwargs):
+    record = old_factory(*args, **kwargs)
+    record.custom_attribute = 0xdecafbad
+    return record
+
+logging.setLogRecordFactory(record_factory)
+</code></pre>
+<p>With this pattern, multiple factories could be chained, and as long as they don’t overwrite each other’s attributes or unintentionally overwrite the standard attributes listed above, there should be no surprises.</p>
+</section>
+<section id="logrecord-attributes" class="level2">
+<h2 class="anchored" data-anchor-id="logrecord-attributes">LogRecord attributes<a href="https://docs.python.org/3/library/logging.html#logrecord-attributes" title="Link to this heading">¶</a></h2>
+<p>The LogRecord has a number of attributes, most of which are derived from the parameters to the constructor. (Note that the names do not always correspond exactly between the LogRecord constructor parameters and the LogRecord attributes.) These attributes can be used to merge data from the record into the format string. The following table lists (in alphabetical order) the attribute names, their meanings and the corresponding placeholder in a %-style format string.</p>
+<p>If you are using {}-formatting (<a href="https://docs.python.org/3/library/stdtypes.html#str.format" title="str.format"><code>str.format()</code></a>), you can use <code>{attrname}</code> as the placeholder in the format string. If you are using <span class="math inline">\(-formatting ([`string.Template`](https://docs.python.org/3/library/string.html#string.Template "string.Template")), use the form `\)</span>{attrname}<code>. In both cases, of course, replace</code>attrname` with the actual attribute name you want to use.</p>
+<p>In the case of {}-formatting, you can specify formatting flags by placing them after the attribute name, separated from it with a colon. For example: a placeholder of <code>{msecs:03.0f}</code> would format a millisecond value of <code>4</code> as <code>004</code>. Refer to the <a href="https://docs.python.org/3/library/stdtypes.html#str.format" title="str.format"><code>str.format()</code></a> documentation for full details on the options available to you.</p>
+<div class="line-block"></div>
+<p>Attribute name</p>
+<p>|</p>
+<p>Format</p>
+<p>|</p>
+<p>Description</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>args</p>
+<p>|</p>
+<p>You shouldn’t need to format this yourself.</p>
+<p>|</p>
+<p>The tuple of arguments merged into <code>msg</code> to produce <code>message</code>, or a dict whose values are used for the merge (when there is only one argument, and it is a dictionary).</p>
+<p>| |</p>
+<p>asctime</p>
+<p>|</p>
+<p><code>%(asctime)s</code></p>
+<p>|</p>
+<p>Human-readable time when the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> was created. By default this is of the form ‘2003-07-08 16:49:45,896’ (the numbers after the comma are millisecond portion of the time).</p>
+<p>| |</p>
+<p>created</p>
+<p>|</p>
+<p><code>%(created)f</code></p>
+<p>|</p>
+<p>Time when the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> was created (as returned by <a href="https://docs.python.org/3/library/time.html#time.time_ns" title="time.time_ns"><code>time.time_ns()</code></a> / 1e9).</p>
+<p>| |</p>
+<p>exc_info</p>
+<p>|</p>
+<p>You shouldn’t need to format this yourself.</p>
+<p>|</p>
+<p>Exception tuple (à la <code>sys.exc_info</code>) or, if no exception has occurred, <code>None</code>.</p>
+<p>| |</p>
+<p>filename</p>
+<p>|</p>
+<p><code>%(filename)s</code></p>
+<p>|</p>
+<p>Filename portion of <code>pathname</code>.</p>
+<p>| |</p>
+<p>funcName</p>
+<p>|</p>
+<p><code>%(funcName)s</code></p>
+<p>|</p>
+<p>Name of function containing the logging call.</p>
+<p>| |</p>
+<p>levelname</p>
+<p>|</p>
+<p><code>%(levelname)s</code></p>
+<p>|</p>
+<p>Text logging level for the message (<code>'DEBUG'</code>, <code>'INFO'</code>, <code>'WARNING'</code>, <code>'ERROR'</code>, <code>'CRITICAL'</code>).</p>
+<p>| |</p>
+<p>levelno</p>
+<p>|</p>
+<p><code>%(levelno)s</code></p>
+<p>|</p>
+<p>Numeric logging level for the message (<a href="https://docs.python.org/3/library/logging.html#logging.DEBUG" title="logging.DEBUG"><code>DEBUG</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="logging.INFO"><code>INFO</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.WARNING" title="logging.WARNING"><code>WARNING</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.ERROR" title="logging.ERROR"><code>ERROR</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.CRITICAL" title="logging.CRITICAL"><code>CRITICAL</code></a>).</p>
+<p>| |</p>
+<p>lineno</p>
+<p>|</p>
+<p><code>%(lineno)d</code></p>
+<p>|</p>
+<p>Source line number where the logging call was issued (if available).</p>
+<p>| |</p>
+<p>message</p>
+<p>|</p>
+<p><code>%(message)s</code></p>
+<p>|</p>
+<p>The logged message, computed as <code>msg % args</code>. This is set when <a href="https://docs.python.org/3/library/logging.html#logging.Formatter.format" title="logging.Formatter.format"><code>Formatter.format()</code></a> is invoked.</p>
+<p>| |</p>
+<p>module</p>
+<p>|</p>
+<p><code>%(module)s</code></p>
+<p>|</p>
+<p>Module (name portion of <code>filename</code>).</p>
+<p>| |</p>
+<p>msecs</p>
+<p>|</p>
+<p><code>%(msecs)d</code></p>
+<p>|</p>
+<p>Millisecond portion of the time when the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> was created.</p>
+<p>| |</p>
+<p>msg</p>
+<p>|</p>
+<p>You shouldn’t need to format this yourself.</p>
+<p>|</p>
+<p>The format string passed in the original logging call. Merged with <code>args</code> to produce <code>message</code>, or an arbitrary object (see <a href="https://docs.python.org/3/howto/logging.html#arbitrary-object-messages">Using arbitrary objects as messages</a>).</p>
+<p>| |</p>
+<p>name</p>
+<p>|</p>
+<p><code>%(name)s</code></p>
+<p>|</p>
+<p>Name of the logger used to log the call.</p>
+<p>| |</p>
+<p>pathname</p>
+<p>|</p>
+<p><code>%(pathname)s</code></p>
+<p>|</p>
+<p>Full pathname of the source file where the logging call was issued (if available).</p>
+<p>| |</p>
+<p>process</p>
+<p>|</p>
+<p><code>%(process)d</code></p>
+<p>|</p>
+<p>Process ID (if available).</p>
+<p>| |</p>
+<p>processName</p>
+<p>|</p>
+<p><code>%(processName)s</code></p>
+<p>|</p>
+<p>Process name (if available).</p>
+<p>| |</p>
+<p>relativeCreated</p>
+<p>|</p>
+<p><code>%(relativeCreated)d</code></p>
+<p>|</p>
+<p>Time in milliseconds when the LogRecord was created, relative to the time the logging module was loaded.</p>
+<p>| |</p>
+<p>stack_info</p>
+<p>|</p>
+<p>You shouldn’t need to format this yourself.</p>
+<p>|</p>
+<p>Stack frame information (where available) from the bottom of the stack in the current thread, up to and including the stack frame of the logging call which resulted in the creation of this record.</p>
+<p>| |</p>
+<p>thread</p>
+<p>|</p>
+<p><code>%(thread)d</code></p>
+<p>|</p>
+<p>Thread ID (if available).</p>
+<p>| |</p>
+<p>threadName</p>
+<p>|</p>
+<p><code>%(threadName)s</code></p>
+<p>|</p>
+<p>Thread name (if available).</p>
+<p>| |</p>
+<p>taskName</p>
+<p>|</p>
+<p><code>%(taskName)s</code></p>
+<p>|</p>
+<p><a href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task" title="asyncio.Task"><code>asyncio.Task</code></a> name (if available).</p>
+<p>|</p>
+<p>Changed in version 3.1: <em>processName</em> was added.</p>
+<p>Changed in version 3.12: <em>taskName</em> was added.</p>
+</section>
+<section id="loggeradapter-objects" class="level2">
+<h2 class="anchored" data-anchor-id="loggeradapter-objects">LoggerAdapter Objects<a href="https://docs.python.org/3/library/logging.html#loggeradapter-objects" title="Link to this heading">¶</a></h2>
+<p><a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter" title="logging.LoggerAdapter"><code>LoggerAdapter</code></a> instances are used to conveniently pass contextual information into logging calls. For a usage example, see the section on <a href="https://docs.python.org/3/howto/logging-cookbook.html#context-info">adding contextual information to your logging output</a>.</p>
+<p><em>class</em> logging.LoggerAdapter(<em>logger</em>, <em>extra</em>, <em>merge_extra=False</em>)<a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter" title="Link to this definition">¶</a></p>
+<p>Returns an instance of <a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter" title="logging.LoggerAdapter"><code>LoggerAdapter</code></a> initialized with an underlying <a href="https://docs.python.org/3/library/logging.html#logging.Logger" title="logging.Logger"><code>Logger</code></a> instance, a dict-like object (<em>extra</em>), and a boolean (<em>merge_extra</em>) indicating whether or not the <em>extra</em> argument of individual log calls should be merged with the <a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter" title="logging.LoggerAdapter"><code>LoggerAdapter</code></a> extra. The default behavior is to ignore the <em>extra</em> argument of individual log calls and only use the one of the <a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter" title="logging.LoggerAdapter"><code>LoggerAdapter</code></a> instance</p>
+<p>process(<em>msg</em>, <em>kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter.process" title="Link to this definition">¶</a></p>
+<p>Modifies the message and/or keyword arguments passed to a logging call in order to insert contextual information. This implementation takes the object passed as <em>extra</em> to the constructor and adds it to <em>kwargs</em> using key ‘extra’. The return value is a (<em>msg</em>, <em>kwargs</em>) tuple which has the (possibly modified) versions of the arguments passed in.</p>
+<p>manager<a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter.manager" title="Link to this definition">¶</a></p>
+<p>Delegates to the underlying <code>manager</code> on <em>logger</em>.</p>
+<p>_log<a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter._log" title="Link to this definition">¶</a></p>
+<p>Delegates to the underlying <code>_log()</code> method on <em>logger</em>.</p>
+<p>In addition to the above, <a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter" title="logging.LoggerAdapter"><code>LoggerAdapter</code></a> supports the following methods of <a href="https://docs.python.org/3/library/logging.html#logging.Logger" title="logging.Logger"><code>Logger</code></a>: <a href="https://docs.python.org/3/library/logging.html#logging.Logger.debug" title="logging.Logger.debug"><code>debug()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.info" title="logging.Logger.info"><code>info()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.warning" title="logging.Logger.warning"><code>warning()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="logging.Logger.error"><code>error()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.exception" title="logging.Logger.exception"><code>exception()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.critical" title="logging.Logger.critical"><code>critical()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="logging.Logger.log"><code>log()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.isEnabledFor" title="logging.Logger.isEnabledFor"><code>isEnabledFor()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.getEffectiveLevel" title="logging.Logger.getEffectiveLevel"><code>getEffectiveLevel()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.setLevel" title="logging.Logger.setLevel"><code>setLevel()</code></a> and <a href="https://docs.python.org/3/library/logging.html#logging.Logger.hasHandlers" title="logging.Logger.hasHandlers"><code>hasHandlers()</code></a>. These methods have the same signatures as their counterparts in <a href="https://docs.python.org/3/library/logging.html#logging.Logger" title="logging.Logger"><code>Logger</code></a>, so you can use the two types of instances interchangeably.</p>
+<p>Changed in version 3.2: The <a href="https://docs.python.org/3/library/logging.html#logging.Logger.isEnabledFor" title="logging.Logger.isEnabledFor"><code>isEnabledFor()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.getEffectiveLevel" title="logging.Logger.getEffectiveLevel"><code>getEffectiveLevel()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.Logger.setLevel" title="logging.Logger.setLevel"><code>setLevel()</code></a> and <a href="https://docs.python.org/3/library/logging.html#logging.Logger.hasHandlers" title="logging.Logger.hasHandlers"><code>hasHandlers()</code></a> methods were added to <a href="https://docs.python.org/3/library/logging.html#logging.LoggerAdapter" title="logging.LoggerAdapter"><code>LoggerAdapter</code></a>. These methods delegate to the underlying logger.</p>
+<p>Changed in version 3.6: Attribute <code>manager</code> and method <code>_log()</code> were added, which delegate to the underlying logger and allow adapters to be nested.</p>
+<p>Changed in version 3.13: The <em>merge_extra</em> argument was added.</p>
+</section>
+<section id="thread-safety" class="level2">
+<h2 class="anchored" data-anchor-id="thread-safety">Thread Safety<a href="https://docs.python.org/3/library/logging.html#thread-safety" title="Link to this heading">¶</a></h2>
+<p>The logging module is intended to be thread-safe without any special work needing to be done by its clients. It achieves this though using threading locks; there is one lock to serialize access to the module’s shared data, and each handler also creates a lock to serialize access to its underlying I/O.</p>
+<p>If you are implementing asynchronous signal handlers using the <a href="https://docs.python.org/3/library/signal.html#module-signal" title="signal: Set handlers for asynchronous events."><code>signal</code></a> module, you may not be able to use logging from within such handlers. This is because lock implementations in the <a href="https://docs.python.org/3/library/threading.html#module-threading" title="threading: Thread-based parallelism."><code>threading</code></a> module are not always re-entrant, and so cannot be invoked from such signal handlers.</p>
+</section>
+<section id="module-level-functions" class="level2">
+<h2 class="anchored" data-anchor-id="module-level-functions">Module-Level Functions<a href="https://docs.python.org/3/library/logging.html#module-level-functions" title="Link to this heading">¶</a></h2>
+<p>In addition to the classes described above, there are a number of module-level functions.</p>
+<p>logging.getLogger(<em>name=None</em>)<a href="https://docs.python.org/3/library/logging.html#logging.getLogger" title="Link to this definition">¶</a></p>
+<p>Return a logger with the specified name or, if name is <code>None</code>, return the root logger of the hierarchy. If specified, the name is typically a dot-separated hierarchical name like <em>‘a’</em>, <em>‘a.b’</em> or <em>‘a.b.c.d’</em>. Choice of these names is entirely up to the developer who is using logging, though it is recommended that <code>__name__</code> be used unless you have a specific reason for not doing that, as mentioned in <a href="https://docs.python.org/3/library/logging.html#logger">Logger Objects</a>.</p>
+<p>All calls to this function with a given name return the same logger instance. This means that logger instances never need to be passed between different parts of an application.</p>
+<p>logging.getLoggerClass()<a href="https://docs.python.org/3/library/logging.html#logging.getLoggerClass" title="Link to this definition">¶</a></p>
+<p>Return either the standard <a href="https://docs.python.org/3/library/logging.html#logging.Logger" title="logging.Logger"><code>Logger</code></a> class, or the last class passed to <a href="https://docs.python.org/3/library/logging.html#logging.setLoggerClass" title="logging.setLoggerClass"><code>setLoggerClass()</code></a>. This function may be called from within a new class definition, to ensure that installing a customized <a href="https://docs.python.org/3/library/logging.html#logging.Logger" title="logging.Logger"><code>Logger</code></a> class will not undo customizations already applied by other code. For example:</p>
+<pre><code>class MyLogger(logging.getLoggerClass()):
+    # ... override behaviour here
+</code></pre>
+<p>logging.getLogRecordFactory()<a href="https://docs.python.org/3/library/logging.html#logging.getLogRecordFactory" title="Link to this definition">¶</a></p>
+<p>Return a callable which is used to create a <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a>.</p>
+<p>Added in version 3.2: This function has been provided, along with <a href="https://docs.python.org/3/library/logging.html#logging.setLogRecordFactory" title="logging.setLogRecordFactory"><code>setLogRecordFactory()</code></a>, to allow developers more control over how the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> representing a logging event is constructed.</p>
+<p>See <a href="https://docs.python.org/3/library/logging.html#logging.setLogRecordFactory" title="logging.setLogRecordFactory"><code>setLogRecordFactory()</code></a> for more information about the how the factory is called.</p>
+<p>logging.debug(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.debug" title="Link to this definition">¶</a></p>
+<p>This is a convenience function that calls <a href="https://docs.python.org/3/library/logging.html#logging.Logger.debug" title="logging.Logger.debug"><code>Logger.debug()</code></a>, on the root logger. The handling of the arguments is in every way identical to what is described in that method.</p>
+<p>The only difference is that if the root logger has no handlers, then <a href="https://docs.python.org/3/library/logging.html#logging.basicConfig" title="logging.basicConfig"><code>basicConfig()</code></a> is called, prior to calling <code>debug</code> on the root logger.</p>
+<p>For very short scripts or quick demonstrations of <code>logging</code> facilities, <code>debug</code> and the other module-level functions may be convenient. However, most programs will want to carefully and explicitly control the logging configuration, and should therefore prefer creating a module-level logger and calling <a href="https://docs.python.org/3/library/logging.html#logging.Logger.debug" title="logging.Logger.debug"><code>Logger.debug()</code></a> (or other level-specific methods) on it, as described at the beginnning of this documentation.</p>
+<p>logging.info(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.info" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="logging.INFO"><code>INFO</code></a> on the root logger. The arguments and behavior are otherwise the same as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>logging.warning(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.warning" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.WARNING" title="logging.WARNING"><code>WARNING</code></a> on the root logger. The arguments and behavior are otherwise the same as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>Note</p>
+<p>There is an obsolete function <code>warn</code> which is functionally identical to <code>warning</code>. As <code>warn</code> is deprecated, please do not use it - use <code>warning</code> instead.</p>
+<p>logging.error(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.error" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.ERROR" title="logging.ERROR"><code>ERROR</code></a> on the root logger. The arguments and behavior are otherwise the same as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>logging.critical(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.critical" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.CRITICAL" title="logging.CRITICAL"><code>CRITICAL</code></a> on the root logger. The arguments and behavior are otherwise the same as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>logging.exception(<em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.exception" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <a href="https://docs.python.org/3/library/logging.html#logging.ERROR" title="logging.ERROR"><code>ERROR</code></a> on the root logger. The arguments and behavior are otherwise the same as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>. Exception info is added to the logging message. This function should only be called from an exception handler.</p>
+<p>logging.log(<em>level</em>, <em>msg</em>, <em>*args</em>, <em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.log" title="Link to this definition">¶</a></p>
+<p>Logs a message with level <em>level</em> on the root logger. The arguments and behavior are otherwise the same as for <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>.</p>
+<p>logging.disable(<em>level=CRITICAL</em>)<a href="https://docs.python.org/3/library/logging.html#logging.disable" title="Link to this definition">¶</a></p>
+<p>Provides an overriding level <em>level</em> for all loggers which takes precedence over the logger’s own level. When the need arises to temporarily throttle logging output down across the whole application, this function can be useful. Its effect is to disable all logging calls of severity <em>level</em> and below, so that if you call it with a value of INFO, then all INFO and DEBUG events would be discarded, whereas those of severity WARNING and above would be processed according to the logger’s effective level. If <code>logging.disable(logging.NOTSET)</code> is called, it effectively removes this overriding level, so that logging output again depends on the effective levels of individual loggers.</p>
+<p>Note that if you have defined any custom logging level higher than <code>CRITICAL</code> (this is not recommended), you won’t be able to rely on the default value for the <em>level</em> parameter, but will have to explicitly supply a suitable value.</p>
+<p>Changed in version 3.7: The <em>level</em> parameter was defaulted to level <code>CRITICAL</code>. See <a href="https://bugs.python.org/issue?@action=redirect&amp;bpo=28524">bpo-28524</a> for more information about this change.</p>
+<p>logging.addLevelName(<em>level</em>, <em>levelName</em>)<a href="https://docs.python.org/3/library/logging.html#logging.addLevelName" title="Link to this definition">¶</a></p>
+<p>Associates level <em>level</em> with text <em>levelName</em> in an internal dictionary, which is used to map numeric levels to a textual representation, for example when a <a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="logging.Formatter"><code>Formatter</code></a> formats a message. This function can also be used to define your own levels. The only constraints are that all levels used must be registered using this function, levels should be positive integers and they should increase in increasing order of severity.</p>
+<p>Note</p>
+<p>If you are thinking of defining your own levels, please see the section on <a href="https://docs.python.org/3/howto/logging.html#custom-levels">Custom Levels</a>.</p>
+<p>logging.getLevelNamesMapping()<a href="https://docs.python.org/3/library/logging.html#logging.getLevelNamesMapping" title="Link to this definition">¶</a></p>
+<p>Returns a mapping from level names to their corresponding logging levels. For example, the string “CRITICAL” maps to <a href="https://docs.python.org/3/library/logging.html#logging.CRITICAL" title="logging.CRITICAL"><code>CRITICAL</code></a>. The returned mapping is copied from an internal mapping on each call to this function.</p>
+<p>Added in version 3.11.</p>
+<p>logging.getLevelName(<em>level</em>)<a href="https://docs.python.org/3/library/logging.html#logging.getLevelName" title="Link to this definition">¶</a></p>
+<p>Returns the textual or numeric representation of logging level <em>level</em>.</p>
+<p>If <em>level</em> is one of the predefined levels <a href="https://docs.python.org/3/library/logging.html#logging.CRITICAL" title="logging.CRITICAL"><code>CRITICAL</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.ERROR" title="logging.ERROR"><code>ERROR</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.WARNING" title="logging.WARNING"><code>WARNING</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.INFO" title="logging.INFO"><code>INFO</code></a> or <a href="https://docs.python.org/3/library/logging.html#logging.DEBUG" title="logging.DEBUG"><code>DEBUG</code></a> then you get the corresponding string. If you have associated levels with names using <a href="https://docs.python.org/3/library/logging.html#logging.addLevelName" title="logging.addLevelName"><code>addLevelName()</code></a> then the name you have associated with <em>level</em> is returned. If a numeric value corresponding to one of the defined levels is passed in, the corresponding string representation is returned.</p>
+<p>The <em>level</em> parameter also accepts a string representation of the level such as ‘INFO’. In such cases, this functions returns the corresponding numeric value of the level.</p>
+<p>If no matching numeric or string value is passed in, the string ‘Level %s’ % level is returned.</p>
+<p>Note</p>
+<p>Levels are internally integers (as they need to be compared in the logging logic). This function is used to convert between an integer level and the level name displayed in the formatted log output by means of the <code>%(levelname)s</code> format specifier (see <a href="https://docs.python.org/3/library/logging.html#logrecord-attributes">LogRecord attributes</a>), and vice versa.</p>
+<p>Changed in version 3.4: In Python versions earlier than 3.4, this function could also be passed a text level, and would return the corresponding numeric value of the level. This undocumented behaviour was considered a mistake, and was removed in Python 3.4, but reinstated in 3.4.2 due to retain backward compatibility.</p>
+<p>logging.getHandlerByName(<em>name</em>)<a href="https://docs.python.org/3/library/logging.html#logging.getHandlerByName" title="Link to this definition">¶</a></p>
+<p>Returns a handler with the specified <em>name</em>, or <code>None</code> if there is no handler with that name.</p>
+<p>Added in version 3.12.</p>
+<p>logging.getHandlerNames()<a href="https://docs.python.org/3/library/logging.html#logging.getHandlerNames" title="Link to this definition">¶</a></p>
+<p>Returns an immutable set of all known handler names.</p>
+<p>Added in version 3.12.</p>
+<p>logging.makeLogRecord(<em>attrdict</em>)<a href="https://docs.python.org/3/library/logging.html#logging.makeLogRecord" title="Link to this definition">¶</a></p>
+<p>Creates and returns a new <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> instance whose attributes are defined by <em>attrdict</em>. This function is useful for taking a pickled <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> attribute dictionary, sent over a socket, and reconstituting it as a <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> instance at the receiving end.</p>
+<p>logging.basicConfig(<em>**kwargs</em>)<a href="https://docs.python.org/3/library/logging.html#logging.basicConfig" title="Link to this definition">¶</a></p>
+<p>Does basic configuration for the logging system by creating a <a href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="logging.StreamHandler"><code>StreamHandler</code></a> with a default <a href="https://docs.python.org/3/library/logging.html#logging.Formatter" title="logging.Formatter"><code>Formatter</code></a> and adding it to the root logger. The functions <a href="https://docs.python.org/3/library/logging.html#logging.debug" title="logging.debug"><code>debug()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.info" title="logging.info"><code>info()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.warning" title="logging.warning"><code>warning()</code></a>, <a href="https://docs.python.org/3/library/logging.html#logging.error" title="logging.error"><code>error()</code></a> and <a href="https://docs.python.org/3/library/logging.html#logging.critical" title="logging.critical"><code>critical()</code></a> will call <a href="https://docs.python.org/3/library/logging.html#logging.basicConfig" title="logging.basicConfig"><code>basicConfig()</code></a> automatically if no handlers are defined for the root logger.</p>
+<p>This function does nothing if the root logger already has handlers configured, unless the keyword argument <em>force</em> is set to <code>True</code>.</p>
+<p>Note</p>
+<p>This function should be called from the main thread before other threads are started. In versions of Python prior to 2.7.1 and 3.2, if this function is called from multiple threads, it is possible (in rare circumstances) that a handler will be added to the root logger more than once, leading to unexpected results such as messages being duplicated in the log.</p>
+<p>The following keyword arguments are supported.</p>
+<div class="line-block"></div>
+<p>Format</p>
+<p>|</p>
+<p>Description</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><em>filename</em></p>
+<p>|</p>
+<p>Specifies that a <a href="https://docs.python.org/3/library/logging.handlers.html#logging.FileHandler" title="logging.FileHandler"><code>FileHandler</code></a> be created, using the specified filename, rather than a <a href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="logging.StreamHandler"><code>StreamHandler</code></a>.</p>
+<p>| |</p>
+<p><em>filemode</em></p>
+<p>|</p>
+<p>If <em>filename</em> is specified, open the file in this <a href="https://docs.python.org/3/library/functions.html#filemodes">mode</a>. Defaults to <code>'a'</code>.</p>
+<p>| |</p>
+<p><em>format</em></p>
+<p>|</p>
+<p>Use the specified format string for the handler. Defaults to attributes <code>levelname</code>, <code>name</code> and <code>message</code> separated by colons.</p>
+<p>| |</p>
+<p><em>datefmt</em></p>
+<p>|</p>
+<p>Use the specified date/time format, as accepted by <a href="https://docs.python.org/3/library/time.html#time.strftime" title="time.strftime"><code>time.strftime()</code></a>.</p>
+<p>| |</p>
+<p><em>style</em></p>
+<p>|</p>
+<p>If <em>format</em> is specified, use this style for the format string. One of <code>'%'</code>, <code>'{'</code> or <code>'$'</code> for <a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">printf-style</a>, <a href="https://docs.python.org/3/library/stdtypes.html#str.format" title="str.format"><code>str.format()</code></a> or <a href="https://docs.python.org/3/library/string.html#string.Template" title="string.Template"><code>string.Template</code></a> respectively. Defaults to <code>'%'</code>.</p>
+<p>| |</p>
+<p><em>level</em></p>
+<p>|</p>
+<p>Set the root logger level to the specified <a href="https://docs.python.org/3/library/logging.html#levels">level</a>.</p>
+<p>| |</p>
+<p><em>stream</em></p>
+<p>|</p>
+<p>Use the specified stream to initialize the <a href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="logging.StreamHandler"><code>StreamHandler</code></a>. Note that this argument is incompatible with <em>filename</em> - if both are present, a <code>ValueError</code> is raised.</p>
+<p>| |</p>
+<p><em>handlers</em></p>
+<p>|</p>
+<p>If specified, this should be an iterable of already created handlers to add to the root logger. Any handlers which don’t already have a formatter set will be assigned the default formatter created in this function. Note that this argument is incompatible with <em>filename</em> or <em>stream</em> - if both are present, a <code>ValueError</code> is raised.</p>
+<p>| |</p>
+<p><em>force</em></p>
+<p>|</p>
+<p>If this keyword argument is specified as true, any existing handlers attached to the root logger are removed and closed, before carrying out the configuration as specified by the other arguments.</p>
+<p>| |</p>
+<p><em>encoding</em></p>
+<p>|</p>
+<p>If this keyword argument is specified along with <em>filename</em>, its value is used when the <a href="https://docs.python.org/3/library/logging.handlers.html#logging.FileHandler" title="logging.FileHandler"><code>FileHandler</code></a> is created, and thus used when opening the output file.</p>
+<p>| |</p>
+<p><em>errors</em></p>
+<p>|</p>
+<p>If this keyword argument is specified along with <em>filename</em>, its value is used when the <a href="https://docs.python.org/3/library/logging.handlers.html#logging.FileHandler" title="logging.FileHandler"><code>FileHandler</code></a> is created, and thus used when opening the output file. If not specified, the value ‘backslashreplace’ is used. Note that if <code>None</code> is specified, it will be passed as such to <a href="https://docs.python.org/3/library/functions.html#open" title="open"><code>open()</code></a>, which means that it will be treated the same as passing ‘errors’.</p>
+<p>|</p>
+<p>Changed in version 3.2: The <em>style</em> argument was added.</p>
+<p>Changed in version 3.3: The <em>handlers</em> argument was added. Additional checks were added to catch situations where incompatible arguments are specified (e.g.&nbsp;<em>handlers</em> together with <em>stream</em> or <em>filename</em>, or <em>stream</em> together with <em>filename</em>).</p>
+<p>Changed in version 3.8: The <em>force</em> argument was added.</p>
+<p>Changed in version 3.9: The <em>encoding</em> and <em>errors</em> arguments were added.</p>
+<p>logging.shutdown()<a href="https://docs.python.org/3/library/logging.html#logging.shutdown" title="Link to this definition">¶</a></p>
+<p>Informs the logging system to perform an orderly shutdown by flushing and closing all handlers. This should be called at application exit and no further use of the logging system should be made after this call.</p>
+<p>When the logging module is imported, it registers this function as an exit handler (see <a href="https://docs.python.org/3/library/atexit.html#module-atexit" title="atexit: Register and execute cleanup functions."><code>atexit</code></a>), so normally there’s no need to do that manually.</p>
+<p>logging.setLoggerClass(<em>klass</em>)<a href="https://docs.python.org/3/library/logging.html#logging.setLoggerClass" title="Link to this definition">¶</a></p>
+<p>Tells the logging system to use the class <em>klass</em> when instantiating a logger. The class should define <code>__init__()</code> such that only a name argument is required, and the <code>__init__()</code> should call <code>Logger.__init__()</code>. This function is typically called before any loggers are instantiated by applications which need to use custom logger behavior. After this call, as at any other time, do not instantiate loggers directly using the subclass: continue to use the <a href="https://docs.python.org/3/library/logging.html#logging.getLogger" title="logging.getLogger"><code>logging.getLogger()</code></a> API to get your loggers.</p>
+<p>logging.setLogRecordFactory(<em>factory</em>)<a href="https://docs.python.org/3/library/logging.html#logging.setLogRecordFactory" title="Link to this definition">¶</a></p>
+<p>Set a callable which is used to create a <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a>.</p>
+<p>Parameters:</p>
+<p><strong>factory</strong> – The factory callable to be used to instantiate a log record.</p>
+<p>Added in version 3.2: This function has been provided, along with <a href="https://docs.python.org/3/library/logging.html#logging.getLogRecordFactory" title="logging.getLogRecordFactory"><code>getLogRecordFactory()</code></a>, to allow developers more control over how the <a href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="logging.LogRecord"><code>LogRecord</code></a> representing a logging event is constructed.</p>
+<p>The factory has the following signature:</p>
+<p><code>factory(name, level, fn, lno, msg, args, exc_info, func=None, sinfo=None, **kwargs)</code></p>
+<blockquote class="blockquote">
+<p>name:</p>
+<p>The logger name.</p>
+<p>level:</p>
+<p>The logging level (numeric).</p>
+<p>fn:</p>
+<p>The full pathname of the file where the logging call was made.</p>
+<p>lno:</p>
+<p>The line number in the file where the logging call was made.</p>
+<p>msg:</p>
+<p>The logging message.</p>
+<p>args:</p>
+<p>The arguments for the logging message.</p>
+<p>exc_info:</p>
+<p>An exception tuple, or <code>None</code>.</p>
+<p>func:</p>
+<p>The name of the function or method which invoked the logging call.</p>
+<p>sinfo:</p>
+<p>A stack traceback such as is provided by <a href="https://docs.python.org/3/library/traceback.html#traceback.print_stack" title="traceback.print_stack"><code>traceback.print_stack()</code></a>, showing the call hierarchy.</p>
+<p>kwargs:</p>
+<p>Additional keyword arguments.</p>
+</blockquote>
+</section>
+<section id="module-level-attributes" class="level2">
+<h2 class="anchored" data-anchor-id="module-level-attributes">Module-Level Attributes<a href="https://docs.python.org/3/library/logging.html#module-level-attributes" title="Link to this heading">¶</a></h2>
+<p>logging.lastResort<a href="https://docs.python.org/3/library/logging.html#logging.lastResort" title="Link to this definition">¶</a></p>
+<p>A “handler of last resort” is available through this attribute. This is a <a href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="logging.StreamHandler"><code>StreamHandler</code></a> writing to <code>sys.stderr</code> with a level of <code>WARNING</code>, and is used to handle logging events in the absence of any logging configuration. The end result is to just print the message to <code>sys.stderr</code>. This replaces the earlier error message saying that “no handlers could be found for logger XYZ”. If you need the earlier behaviour for some reason, <code>lastResort</code> can be set to <code>None</code>.</p>
+<p>Added in version 3.2.</p>
+<p>logging.raiseExceptions<a href="https://docs.python.org/3/library/logging.html#logging.raiseExceptions" title="Link to this definition">¶</a></p>
+<p>Used to see if exceptions during handling should be propagated.</p>
+<p>Default: <code>True</code>.</p>
+<p>If <a href="https://docs.python.org/3/library/logging.html#logging.raiseExceptions" title="logging.raiseExceptions"><code>raiseExceptions</code></a> is <code>False</code>, exceptions get silently ignored. This is what is mostly wanted for a logging system - most users will not care about errors in the logging system, they are more interested in application errors.</p>
+</section>
+<section id="integration-with-the-warnings-module" class="level2">
+<h2 class="anchored" data-anchor-id="integration-with-the-warnings-module">Integration with the warnings module<a href="https://docs.python.org/3/library/logging.html#integration-with-the-warnings-module" title="Link to this heading">¶</a></h2>
+<p>The <a href="https://docs.python.org/3/library/logging.html#logging.captureWarnings" title="logging.captureWarnings"><code>captureWarnings()</code></a> function can be used to integrate <a href="https://docs.python.org/3/library/logging.html#module-logging" title="logging: Flexible event logging system for applications."><code>logging</code></a> with the <a href="https://docs.python.org/3/library/warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code>warnings</code></a> module.</p>
+<p>logging.captureWarnings(<em>capture</em>)<a href="https://docs.python.org/3/library/logging.html#logging.captureWarnings" title="Link to this definition">¶</a></p>
+<p>This function is used to turn the capture of warnings by logging on and off.</p>
+<p>If <em>capture</em> is <code>True</code>, warnings issued by the <a href="https://docs.python.org/3/library/warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code>warnings</code></a> module will be redirected to the logging system. Specifically, a warning will be formatted using <a href="https://docs.python.org/3/library/warnings.html#warnings.formatwarning" title="warnings.formatwarning"><code>warnings.formatwarning()</code></a> and the resulting string logged to a logger named <code>'py.warnings'</code> with a severity of <a href="https://docs.python.org/3/library/logging.html#logging.WARNING" title="logging.WARNING"><code>WARNING</code></a>.</p>
+<p>If <em>capture</em> is <code>False</code>, the redirection of warnings to the logging system will stop, and warnings will be redirected to their original destinations (i.e.&nbsp;those in effect before <code>captureWarnings(True)</code> was called).</p>
+<p>See also</p>
+<p>Module <a href="https://docs.python.org/3/library/logging.config.html#module-logging.config" title="logging.config: Configuration of the logging module."><code>logging.config</code></a></p>
+<p>Configuration API for the logging module.</p>
+<p>Module <a href="https://docs.python.org/3/library/logging.handlers.html#module-logging.handlers" title="logging.handlers: Handlers for the logging module."><code>logging.handlers</code></a></p>
+<p>Useful handlers included with the logging module.</p>
+<p><a href="https://peps.python.org/pep-0282/"><strong>PEP 282</strong></a> - A Logging System</p>
+<p>The proposal which described this feature for inclusion in the Python standard library.</p>
+<p><a href="https://old.red-dove.com/python_logging.html">Original Python logging package</a></p>
+<p>This is the original source for the <a href="https://docs.python.org/3/library/logging.html#module-logging" title="logging: Flexible event logging system for applications."><code>logging</code></a> package. The version of the package available from this site is suitable for use with Python 1.5.2, 2.1.x and 2.2.x, which do not include the <a href="https://docs.python.org/3/library/logging.html#module-logging" title="logging: Flexible event logging system for applications."><code>logging</code></a> package in the standard library.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/glennmatlin\.doctor");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Glenn Matlin. All rights reserved.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Published with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
