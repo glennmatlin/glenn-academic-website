@@ -11,9 +11,8 @@ date: "2024-03-14T00:00:00Z"
 # Optional external URL for project (replaces project detail page).
 external_link: ""
 
-image:
-  caption: Financial Language Model Evaluation
-  focal_point: Smart
+image: "flame-logo.png"
+image_caption: "Financial Language Model Evaluation"
 
 links:
   - icon: github
